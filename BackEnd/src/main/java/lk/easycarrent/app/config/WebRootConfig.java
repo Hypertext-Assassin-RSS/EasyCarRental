@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Import;
  **/
 
 @Configuration
-@Import(JPAconfig.class)
+@Import(JPAConfig.class)
 public class WebRootConfig {
 }
