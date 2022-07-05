@@ -1,4 +1,4 @@
-package lk.easycarrent.app.config;
+package app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,14 +20,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 /**
- * @PROJECT EasyCarRental
+ * @PROJECT FileUploadSpring
  * @Author Rajith Sanjaya
- * @Date 2022 Jul 03
+ * @Date 2022 Jul 04
  **/
 
 @Configuration
+@EnableJpaRepositories(basePackages = "app.repo")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "lk.easycarrent.app.repo")
 @PropertySource("classpath:application.properties")
 public class JPAConfig {
 

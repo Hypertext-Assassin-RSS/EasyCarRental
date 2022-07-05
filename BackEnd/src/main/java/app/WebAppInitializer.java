@@ -1,15 +1,12 @@
-package lk.easycarrent.app;
+package app;
 
-import lk.easycarrent.app.config.WebAppConfig;
-import lk.easycarrent.app.config.WebRootConfig;
+
+import app.config.WebAppConfig;
+import app.config.WebRootConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-/**
- * @PROJECT EasyCarRental
- * @Author Rajith Sanjaya
- * @Date 2022 Jul 03
- **/
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[]{WebRootConfig.class};

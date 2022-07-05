@@ -1,12 +1,12 @@
-package lk.easycarrent.app.config;
+package app.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * @PROJECT EasyCarRental
+ * @PROJECT FileUploadSpring
  * @Author Rajith Sanjaya
- * @Date 2022 Jul 03
+ * @Date 2022 Jul 04
  **/
 
 @Configuration
