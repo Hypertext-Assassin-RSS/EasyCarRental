@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.entity.File;
+import app.entity.NicImage;
 import app.service.DatabaseFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -23,12 +23,12 @@ public class FileDownloadController {
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
         // Load file as Resource
-        File file = fileStorageService.getFile(fileName);
+        NicImage nicImage = fileStorageService.getNic(fileName);
 
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(file.getFileType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFileName() + "\"")
-                .body(new ByteArrayResource(file.getData()));
+                .contentType(MediaType.parseMediaType(nicImage.getFileType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + nicImage.getFileName() + "\"")
+                .body(new ByteArrayResource(nicImage.getData()));
     }
 
 }

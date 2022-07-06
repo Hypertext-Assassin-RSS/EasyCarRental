@@ -5,22 +5,22 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "files")
-public class File {
+@Table(name = "Lic_Images")
+public class LicImage {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	private String fileName;
+	private  String fileName;
 	private String fileType;
 	@Lob
 	private byte[] data;
 
-	public File() {
+	public LicImage() {
 
 	}
 
-	public File(String fileName, String fileType, byte[] data) {
+	public LicImage(String fileName, String fileType, byte[] data) {
 		this.fileName = fileName;
 		this.fileType = fileType;
 		this.data = data;
@@ -30,7 +30,7 @@ public class File {
 		return id;
 	}
 
-	public String getFileName() {
+	public  String getFileName() {
 		return fileName;
 	}
 

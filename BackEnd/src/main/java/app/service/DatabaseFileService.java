@@ -1,6 +1,7 @@
 package app.service;
 
-import app.entity.File;
+import app.entity.LicImage;
+import app.entity.NicImage;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -9,6 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
  * @Date 2022 Jul 05
  **/
 public interface DatabaseFileService {
-    public File storeFile(MultipartFile file);
-    public File getFile(String fileId);
+    public NicImage saveNic(MultipartFile file);
+    public NicImage getNic(String fileId);
+
+    public LicImage saveLic(MultipartFile file);
+    public LicImage getLic(String fileId);
 }

@@ -2,7 +2,7 @@ package app.service.impl;
 
 import app.dto.GustUserDTO;
 import app.entity.GustUser;
-import app.repo.DatabaseFileRepo;
+import app.repo.NicRepo;
 import app.repo.GustUserRepo;
 import app.service.GustUserService;
 import org.modelmapper.ModelMapper;
@@ -24,7 +24,7 @@ public class GustUserServiceImpl implements GustUserService {
     GustUserRepo gustUserRepo;
 
     @Autowired
-    DatabaseFileRepo databaseFileRepo;
+    NicRepo nicRepo;
 
     @Autowired
     ModelMapper modelMapper;
