@@ -6,9 +6,12 @@ import app.repo.NicRepo;
 import app.repo.GustUserRepo;
 import app.service.GustUserService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @PROJECT EasyCarRental
@@ -24,13 +27,20 @@ public class GustUserServiceImpl implements GustUserService {
     GustUserRepo gustUserRepo;
 
     @Autowired
-    NicRepo nicRepo;
-
-    @Autowired
     ModelMapper modelMapper;
 
     @Override
     public void registerGustUser(GustUserDTO gustUserDTO) {
-        gustUserRepo.save(modelMapper.map(gustUserDTO, GustUser.class));
+        if (!gustUserRepo.existsById(gustUserDTO.getId())){
+            gustUserRepo.save(modelMapper.map(gustUserDTO, GustUser.class));
+        }else {
+            throw new RuntimeException("Customer from ID : "+gustUserDTO.getId()+" is Already Available!!!");
+        }
+    }
+
+    @Override
+    public List<GustUserDTO> getAllGustUsers() {
+        return modelMapper.map(gustUserRepo.findAll(),new TypeToken<List<GustUserDTO>>(){}.getType());
+
     }
 }

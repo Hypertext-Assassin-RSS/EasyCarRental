@@ -2,6 +2,8 @@ package app.service;
 
 import app.dto.GustUserDTO;
 
+import java.util.List;
+
 /**
  * @PROJECT EasyCarRental
  * @Author Rajith Sanjaya
@@ -11,4 +13,6 @@ import app.dto.GustUserDTO;
 
 public interface GustUserService {
     public void registerGustUser(GustUserDTO gustUserDTO);
+
+    public List<GustUserDTO> getAllGustUsers();
 }
