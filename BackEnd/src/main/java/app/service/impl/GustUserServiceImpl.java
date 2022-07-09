@@ -61,4 +61,13 @@ public class GustUserServiceImpl implements GustUserService {
             throw new RuntimeException("User : "+id+" not Exists to Delete!!!");
         }
     }
+
+    @Override
+    public GustUserDTO searchGustUser(String id) {
+        if (gustUserRepo.existsById(id)){
+            return modelMapper.map(gustUserRepo.findById(id).get(),GustUserDTO.class);
+        }else {
+            throw new RuntimeException("User from ID : "+id+" not Exists to Find!!!");
+        }
+    }
 }

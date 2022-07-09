@@ -19,4 +19,6 @@ public interface GustUserService {
     public void updateGustUser(GustUserDTO gustUserDTO);
 
     public void deleteGustUser(String id);
+
+    GustUserDTO searchGustUser(String id);
 }

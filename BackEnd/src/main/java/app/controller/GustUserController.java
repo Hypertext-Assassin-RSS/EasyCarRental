@@ -50,4 +50,9 @@ public class GustUserController {
         gustUserService.deleteGustUser(id);
         return new ResponseUtil(200,"User ID :"+id+" Deleted!!!",null);
     }
+
+    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchGustUser(@PathVariable  String id){
+        return new ResponseUtil(200,"Done",gustUserService.searchGustUser(id));
+    }
 }
