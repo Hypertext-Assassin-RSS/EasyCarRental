@@ -15,4 +15,6 @@ public interface GustUserService {
     public void registerGustUser(GustUserDTO gustUserDTO);
 
     public List<GustUserDTO> getAllGustUsers();
+
+    public void updateGustUser(GustUserDTO gustUserDTO);
 }

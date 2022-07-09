@@ -34,7 +34,7 @@ public class GustUserServiceImpl implements GustUserService {
         if (!gustUserRepo.existsById(gustUserDTO.getId())){
             gustUserRepo.save(modelMapper.map(gustUserDTO, GustUser.class));
         }else {
-            throw new RuntimeException("Customer from ID : "+gustUserDTO.getId()+" is Already Available!!!");
+            throw new RuntimeException("User from ID : "+gustUserDTO.getId()+" is Already Available!!!");
         }
     }
 
@@ -42,5 +42,14 @@ public class GustUserServiceImpl implements GustUserService {
     public List<GustUserDTO> getAllGustUsers() {
         return modelMapper.map(gustUserRepo.findAll(),new TypeToken<List<GustUserDTO>>(){}.getType());
 
+    }
+
+    @Override
+    public void updateGustUser(GustUserDTO gustUserDTO) {
+        if (gustUserRepo.existsById(gustUserDTO.getId())){
+            gustUserRepo.save(modelMapper.map(gustUserDTO,GustUser.class));
+        }else {
+            throw new RuntimeException("User : "+gustUserDTO.getId()+" is not Exists on Database!!!");
+        }
     }
 }

@@ -29,11 +29,19 @@ public class GustUserController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil registerGustUser(@ModelAttribute GustUserDTO gustUserDTO){
         gustUserService.registerGustUser(gustUserDTO);
-        return new ResponseUtil(200,"Customer : "+gustUserDTO.getId() +" saved successful!!",null);
+        return new ResponseUtil(200,"User : "+gustUserDTO.getId() +" saved successful!!",null);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllGustUsers(){
-        return new ResponseUtil(200,"Get All Customers OK",gustUserService.getAllGustUsers());
+        return new ResponseUtil(200,"Get All User OK",gustUserService.getAllGustUsers());
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateGustUser(@RequestBody  GustUserDTO gustUserDTO){
+        gustUserService.updateGustUser(gustUserDTO);
+        System.out.println(gustUserDTO.toString());
+        return new ResponseUtil(200,"User ID :"+gustUserDTO.getId()+" Update Successful!!",null);
     }
 }
