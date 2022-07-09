@@ -1,7 +1,10 @@
 package app.controller;
 
 import app.dto.GustUserDTO;
+import app.dto.RegisterUserDTO;
+import app.entity.RegisterUser;
 import app.service.GustUserService;
+import app.service.RegisterUserService;
 import app.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,13 +25,14 @@ public class GustUserController {
     @Autowired
     GustUserService gustUserService;
 
-
-
+    @Autowired
+    RegisterUserService registerUserService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil registerGustUser(@ModelAttribute GustUserDTO gustUserDTO){
+    public ResponseUtil registerGustUser(@ModelAttribute GustUserDTO gustUserDTO, @ModelAttribute RegisterUserDTO registerUserDTO){
         gustUserService.registerGustUser(gustUserDTO);
+        registerUserService.saveRegisterUser(registerUserDTO);
         return new ResponseUtil(200,"User : "+gustUserDTO.getId() +" saved successful!!",null);
     }
 
