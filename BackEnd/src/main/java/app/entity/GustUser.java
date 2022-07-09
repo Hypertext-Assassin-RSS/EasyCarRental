@@ -15,7 +15,7 @@ import java.util.List;
  * @Date 2022 Jul 05
  **/
 
-@Entity
+@Entity(name = "User_Details")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

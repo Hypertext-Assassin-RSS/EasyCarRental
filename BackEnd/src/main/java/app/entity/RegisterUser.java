@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @Date 2022 Jul 09
  **/
 
-@Entity
+@Entity(name = "Email_Password")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
