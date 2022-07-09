@@ -1,10 +1,10 @@
 package app.service.impl;
 
 import app.config.WebAppConfig;
-import app.dto.RegisterUserDTO;
-import app.entity.RegisterUser;
-import app.repo.RegisterUserRepo;
-import app.service.RegisterUserServiceTest;
+import app.dto.AccountDTO;
+import app.entity.Account;
+import app.repo.AccountRepo;
+import app.service.AccountServiceTest;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @PROJECT EasyCarRental
@@ -25,18 +22,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @ContextConfiguration(classes = {WebAppConfig.class})
 @ExtendWith(SpringExtension.class)
 @Service
-class RegisterUserServiceImplTest implements RegisterUserServiceTest {
+class AccountServiceImplTest implements AccountServiceTest {
 
     @Autowired
-    RegisterUserRepo registerUserRepo;
+    AccountRepo accountRepo;
 
     @Autowired
     ModelMapper modelMapper;
 
     @Override
-    public void updateRegisterUser(RegisterUserDTO registerUserDTO) {
-        if (registerUserRepo.existsById(registerUserDTO.getId())){
-            registerUserRepo.save(modelMapper.map(registerUserDTO, RegisterUser.class));
+    public void updateRegisterUser(AccountDTO accountDTO) {
+        if (accountRepo.existsById(accountDTO.getId())){
+            accountRepo.save(modelMapper.map(accountDTO, Account.class));
         } else {
             throw  new RuntimeException("Update Fail");
         }

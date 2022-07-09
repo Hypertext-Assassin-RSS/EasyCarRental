@@ -8,15 +8,19 @@ import lombok.ToString;
 /**
  * @PROJECT EasyCarRental
  * @Author Rajith Sanjaya
- * @Date 2022 Jul 09
+ * @Date 2022 Jul 10
  **/
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
-public class RegisterUserDTO {
+public class DriverDTO {
     private String id;
+    private String name;
+    private String address;
+    private String contact;
+    private Double salary;
     private String email;
     private String password;
 }

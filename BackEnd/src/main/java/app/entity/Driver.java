@@ -4,28 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
  * @PROJECT EasyCarRental
  * @Author Rajith Sanjaya
- * @Date 2022 Jul 09
+ * @Date 2022 Jul 10
  **/
 
-@Entity(name = "Email_Password")
+@Entity(name = "Driver_Details")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
-public class RegisterUser {
+public class Driver {
     @Id
-    /*@GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")*/
     private String id;
+    private String name;
+    private String address;
+    private String contact;
+    private Double salary;
     private String email;
     private String password;
 }
