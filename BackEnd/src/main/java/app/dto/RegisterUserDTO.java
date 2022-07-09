@@ -16,6 +16,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class RegisterUserDTO {
+    private String id;
     private String email;
     private String password;
 }
