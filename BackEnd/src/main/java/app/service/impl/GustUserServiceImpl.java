@@ -52,4 +52,13 @@ public class GustUserServiceImpl implements GustUserService {
             throw new RuntimeException("User : "+gustUserDTO.getId()+" is not Exists on Database!!!");
         }
     }
+
+    @Override
+    public void deleteGustUser(String id) {
+        if(gustUserRepo.existsById(id)){
+            gustUserRepo.deleteById(id);
+        }else {
+            throw new RuntimeException("User : "+id+" not Exists to Delete!!!");
+        }
+    }
 }

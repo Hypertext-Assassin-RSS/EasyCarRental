@@ -41,7 +41,13 @@ public class GustUserController {
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateGustUser(@RequestBody  GustUserDTO gustUserDTO){
         gustUserService.updateGustUser(gustUserDTO);
-        System.out.println(gustUserDTO.toString());
         return new ResponseUtil(200,"User ID :"+gustUserDTO.getId()+" Update Successful!!",null);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteGustUser(@RequestParam String id){
+        gustUserService.deleteGustUser(id);
+        return new ResponseUtil(200,"User ID :"+id+" Deleted!!!",null);
     }
 }
