@@ -52,4 +52,13 @@ public class DriverServiceImpl implements DriverService {
         return modelMapper.map(driverRepo.findAll(),new TypeToken<List<DriverDTO>>(){}.getType());
 
     }
+
+    @Override
+    public void deleteDriver(String id) {
+        if (driverRepo.existsById(id)){
+            driverRepo.deleteById(id);
+        }else {
+            throw new RuntimeException("Driver From ID : "+id+" is Not Found!!!");
+        }
+    }
 }

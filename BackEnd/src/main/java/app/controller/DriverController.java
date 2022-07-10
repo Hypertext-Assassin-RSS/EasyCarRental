@@ -48,4 +48,11 @@ public class DriverController {
     public ResponseUtil getAllDrivers(GustUserDTO gustUserDTO){
         return new ResponseUtil(200,"Done!", driverService.getAllDrivers());
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE,params = {"id"})
+    public ResponseUtil deleteDriver(@RequestParam String id){
+        driverService.deleteDriver(id);
+        return  new ResponseUtil(200,"Driver ID : "+id+" is Deleted!!!",null);
+    }
 }
