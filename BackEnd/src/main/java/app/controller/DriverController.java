@@ -34,4 +34,11 @@ public class DriverController {
         accountService.saveAccount(accountDTO);
         return new ResponseUtil(200,"Diver From ID : "+driverDTO.getId()+" Saved!",null);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateDriver(@RequestBody DriverDTO driverDTO){
+        driverService.updateDriver(driverDTO);
+        return new ResponseUtil(200,"Driver ID : "+driverDTO.getId()+" is Updated!!",null);
+    }
 }

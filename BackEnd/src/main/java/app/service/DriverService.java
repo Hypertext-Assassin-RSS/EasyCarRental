@@ -10,4 +10,6 @@ import app.dto.DriverDTO;
 public interface DriverService {
 
     public void saveDriver(DriverDTO driverDTO);
+
+    public void updateDriver(DriverDTO driverDTO);
 }

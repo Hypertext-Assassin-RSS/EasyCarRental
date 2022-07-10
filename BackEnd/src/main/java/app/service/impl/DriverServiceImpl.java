@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @PROJECT EasyCarRental
@@ -31,6 +32,15 @@ public class DriverServiceImpl implements DriverService {
             driverRepo.save(modelMapper.map(driverDTO, Driver.class));
         }else {
             throw new RuntimeException("Driver Save Failed!!!");
+        }
+    }
+
+    @Override
+    public void updateDriver( DriverDTO driverDTO) {
+        if (driverRepo.existsById(driverDTO.getId())){
+            driverRepo.save(modelMapper.map(driverDTO,Driver.class));
+        }else {
+            throw new RuntimeException("Driver : "+driverDTO.getId()+" update Failed!!");
         }
     }
 }
