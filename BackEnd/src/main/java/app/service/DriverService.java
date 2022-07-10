@@ -2,6 +2,8 @@ package app.service;
 
 import app.dto.DriverDTO;
 
+import java.util.List;
+
 /**
  * @PROJECT EasyCarRental
  * @Author Rajith Sanjaya
@@ -12,4 +14,6 @@ public interface DriverService {
     public void saveDriver(DriverDTO driverDTO);
 
     public void updateDriver(DriverDTO driverDTO);
+
+    public List<DriverDTO> getAllDrivers();
 }

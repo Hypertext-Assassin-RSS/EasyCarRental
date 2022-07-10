@@ -2,6 +2,7 @@ package app.controller;
 
 import app.dto.AccountDTO;
 import app.dto.DriverDTO;
+import app.dto.GustUserDTO;
 import app.service.AccountService;
 import app.service.DriverService;
 import app.util.ResponseUtil;
@@ -40,5 +41,11 @@ public class DriverController {
     public ResponseUtil updateDriver(@RequestBody DriverDTO driverDTO){
         driverService.updateDriver(driverDTO);
         return new ResponseUtil(200,"Driver ID : "+driverDTO.getId()+" is Updated!!",null);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllDrivers(GustUserDTO gustUserDTO){
+        return new ResponseUtil(200,"Done!", driverService.getAllDrivers());
     }
 }
