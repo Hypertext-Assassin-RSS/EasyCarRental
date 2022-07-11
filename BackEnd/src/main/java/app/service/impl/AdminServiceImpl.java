@@ -34,4 +34,13 @@ public class AdminServiceImpl implements AdminService {
             throw new RuntimeException("Admin "+adminDTO.getName()+" data save failed!!!");
         }
     }
+
+    @Override
+    public void deleteAdmin(String id) {
+        if (adminRepo.existsById(id)){
+            adminRepo.deleteById(id);
+        }else {
+            throw  new RuntimeException("No Admin found by ID : "+id);
+        }
+    }
 }

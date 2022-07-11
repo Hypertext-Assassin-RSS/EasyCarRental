@@ -13,4 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface AdminService {
     public void saveAdmin(AdminDTO adminDTO);
+
+    public void deleteAdmin(String id);
 }

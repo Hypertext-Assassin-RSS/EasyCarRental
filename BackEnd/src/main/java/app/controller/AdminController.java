@@ -36,4 +36,11 @@ public class AdminController {
         accountService.saveAccount(accountDTO);
         return new ResponseUtil(200,"Admin "+adminDTO.getName()+" data saved",null);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @DeleteMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteAdmin(@PathVariable String id){
+        adminService.deleteAdmin(id);
+        return  new ResponseUtil(200,"Admin ID : "+id+" data is deleted!!",null);
+    }
 }
