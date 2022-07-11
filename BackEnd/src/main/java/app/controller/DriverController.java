@@ -55,4 +55,11 @@ public class DriverController {
         driverService.deleteDriver(id);
         return  new ResponseUtil(200,"Driver ID : "+id+" is Deleted!!!",null);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path ="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchDriver(@PathVariable String id){
+        return new ResponseUtil(200,"Done!", driverService.searchDriver(id));
+
+    }
 }

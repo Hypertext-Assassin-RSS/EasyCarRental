@@ -18,4 +18,6 @@ public interface DriverService {
     public List<DriverDTO> getAllDrivers();
 
     public void deleteDriver(String id);
+
+    public DriverDTO  searchDriver(String id);
 }
