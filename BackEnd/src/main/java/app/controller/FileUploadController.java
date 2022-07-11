@@ -1,8 +1,10 @@
 package app.controller;
 
 
+import app.dto.CarImagesDTO;
 import app.dto.LicImageDTO;
 import app.dto.NicImageDTO;
+import app.entity.CarImages;
 import app.entity.LicImage;
 import app.entity.NicImage;
 import app.service.DatabaseFileService;
@@ -49,11 +51,24 @@ public class FileUploadController {
                 file.getContentType(), file.getSize());
     }
 
-    /*@PostMapping("/uploadMultipleFiles")
-    public List<NicImageDTO> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+    public CarImagesDTO uploadCarImages(@RequestParam("file") MultipartFile file){
+        CarImages carImages = fileStorageService.saveCarImage(file);
+
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(carImages.getFileName())
+                .toUriString();
+
+        return new CarImagesDTO(carImages.getFileName(), fileDownloadUri,
+                file.getContentType(), file.getSize());
+    }
+
+
+    @PostMapping("/uploadMultipleFiles")
+    public List<CarImagesDTO> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
-                .map(file -> uploadFile(file))
+                .map(file -> uploadCarImages(file))
                 .collect(Collectors.toList());
-    }*/
+    }
 }

@@ -1,5 +1,6 @@
 package app.service;
 
+import app.entity.CarImages;
 import app.entity.LicImage;
 import app.entity.NicImage;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,4 +16,7 @@ public interface DatabaseFileService {
 
     public LicImage saveLic(MultipartFile file);
     public LicImage getLic(String fileId);
+
+
+    public CarImages saveCarImage(MultipartFile file);
 }

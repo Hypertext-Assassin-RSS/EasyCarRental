@@ -1,9 +1,11 @@
 package app.service.impl;
 
+import app.entity.CarImages;
 import app.entity.LicImage;
 import app.entity.NicImage;
 import app.exception.FileNotFoundException;
 import app.exception.FileStorageException;
+import app.repo.CarImagesRepo;
 import app.repo.LicRepo;
 import app.repo.NicRepo;
 import app.service.DatabaseFileService;
@@ -23,6 +25,10 @@ public class DatabaseFileServiceImpl implements DatabaseFileService {
 
     @Autowired
     private LicRepo licRepo;
+
+
+    @Autowired
+    private CarImagesRepo carImagesRepo;
 
 
 
@@ -75,5 +81,24 @@ public class DatabaseFileServiceImpl implements DatabaseFileService {
     public LicImage getLic(String fileId) {
         return licRepo.findById(fileId)
                 .orElseThrow(() -> new FileNotFoundException("File not found with id " + fileId));
+    }
+
+    @Override
+    public CarImages saveCarImage(MultipartFile file) {
+        // Normalize file name
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+        try {
+            // Check if the file's name contains invalid characters
+            if(fileName.contains("..")) {
+                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+            }
+
+            CarImages carImages = new CarImages(fileName, file.getContentType(), file.getBytes());
+
+            return carImagesRepo.save(carImages);
+        } catch (IOException ex) {
+            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
     }
 }
