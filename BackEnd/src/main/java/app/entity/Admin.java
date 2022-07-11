@@ -1,0 +1,26 @@
+package app.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+/**
+ * @PROJECT EasyCarRental
+ * @Author Rajith Sanjaya
+ * @Date 2022 Jul 11
+ **/
+
+@Entity(name = "Admin_Details")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@ToString
+public class Admin {
+    @Id
+    private String id;
+    public String name;
+}
