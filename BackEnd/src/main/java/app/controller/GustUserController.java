@@ -3,6 +3,7 @@ package app.controller;
 import app.dto.GustUserDTO;
 import app.dto.AccountDTO;
 import app.entity.CarImages;
+import app.entity.LicImage;
 import app.entity.NicImage;
 import app.service.DatabaseFileService;
 import app.service.GustUserService;
@@ -69,17 +70,31 @@ public class GustUserController {
         return new ResponseUtil(200,"Done",gustUserService.searchGustUser(id));
     }
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil uploadFiles(@RequestPart("nicFiles") MultipartFile[] files, String nicNo) throws IOException {
+    @PostMapping(value = "/nic",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseUtil uploadNic(@RequestPart("nicFiles") MultipartFile[] files, String nicNo) throws IOException {
         for (MultipartFile file:files) {
             NicImage nicImage = databaseFileService.saveNic(file);
 
-            File fileSavePath = new File("C:/Users/Rajith Sanjaya/Desktop/uploads/gust");
+            File fileSavePath = new File("C:/Users/Rajith Sanjaya/Desktop/uploads/gust/nic");
             File uploadsDir = new File(fileSavePath + "/"+nicNo);
             System.out.println(fileSavePath);
             uploadsDir.mkdir();
             file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
         }
-        return  new ResponseUtil(200,"Nic image is Saved",null);
+        return  new ResponseUtil(200,"Nic No : "+nicNo+" image is Saved",null);
+    }
+
+    @PostMapping(value = "/lic",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil uploadLic(@RequestPart("licFiles") MultipartFile[] files, String licNo) throws IOException {
+        for (MultipartFile file:files) {
+            LicImage licImage = databaseFileService.saveLic(file);
+
+            File fileSavePath = new File("C:/Users/Rajith Sanjaya/Desktop/uploads/gust/lic");
+            File uploadsDir = new File(fileSavePath + "/"+licNo);
+            System.out.println(fileSavePath);
+            uploadsDir.mkdir();
+            file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
+        }
+        return  new ResponseUtil(200,"Lic No : "+licNo+" image is Saved",null);
     }
 }
