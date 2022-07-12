@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.dto.CardDTO;
+import app.dto.CarDTO;
 import app.entity.CarImages;
 import app.service.CarService;
 import app.service.DatabaseFileService;
@@ -31,12 +31,18 @@ public class CarController {
     @Autowired
     DatabaseFileService databaseFileService;
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllCars(){
+        return new ResponseUtil(200,"Done",carService.getAllCars());
+    }
+
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveCar(CardDTO cardDTO){
-        carService.saveCar(cardDTO);
-        return new ResponseUtil(200,"Car : "+cardDTO.getRegistrationNumber()+" data Saved",null);
+    public ResponseUtil saveCar(CarDTO carDTO){
+        carService.saveCar(carDTO);
+        return new ResponseUtil(200,"Car : "+ carDTO.getRegistrationNumber()+" data Saved",null);
     }
 
 

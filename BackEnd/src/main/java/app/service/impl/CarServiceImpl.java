@@ -1,13 +1,16 @@
 package app.service.impl;
 
-import app.dto.CardDTO;
+import app.dto.CarDTO;
 import app.entity.Car;
 import app.repo.CarRepo;
 import app.service.CarService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @PROJECT EasyCarRental
@@ -25,11 +28,16 @@ public class CarServiceImpl implements CarService {
     ModelMapper modelMapper;
 
     @Override
-    public void saveCar(CardDTO cardDTO) {
-        if (!carRepo.existsById(cardDTO.getRegistrationNumber())){
-            carRepo.save(modelMapper.map(cardDTO, Car.class));
+    public void saveCar(CarDTO carDTO) {
+        if (!carRepo.existsById(carDTO.getRegistrationNumber())){
+            carRepo.save(modelMapper.map(carDTO, Car.class));
         }else {
-            throw new RuntimeException("Car by RegistrationNumber : "+cardDTO.getRegistrationNumber()+" saved fail");
+            throw new RuntimeException("Car by RegistrationNumber : "+ carDTO.getRegistrationNumber()+" saved fail");
         }
+    }
+
+    @Override
+    public List<CarDTO> getAllCars() {
+        return modelMapper.map(carRepo.findAll(),new TypeToken<List<CarDTO>>(){}.getType());
     }
 }

@@ -1,6 +1,8 @@
 package app.service;
 
-import app.dto.CardDTO;
+import app.dto.CarDTO;
+
+import java.util.List;
 
 /**
  * @PROJECT EasyCarRental
@@ -9,5 +11,7 @@ import app.dto.CardDTO;
  **/
 public interface CarService {
 
-    public void saveCar(CardDTO cardDTO);
+    public void saveCar(CarDTO carDTO);
+
+    public List<CarDTO> getAllCars();
 }

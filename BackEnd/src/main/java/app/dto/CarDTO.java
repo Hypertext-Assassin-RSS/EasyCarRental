@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class CardDTO {
+public class CarDTO {
     private String RegistrationNumber;
     private String Brand;
     private String Type;
