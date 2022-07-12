@@ -20,8 +20,8 @@ import java.time.LocalDate;
 @Data
 @ToString
 public class RentRequestDTO {
-     private String RequestCode;
+     private String requestCode;
      @JsonFormat(pattern = "yyyy-MM-dd")
      private LocalDate date;
-     private GustUserDTO gustUserDTO;
+     private GustUserDTO gustUser;
 }

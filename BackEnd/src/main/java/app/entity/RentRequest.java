@@ -1,8 +1,11 @@
 package app.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
@@ -11,9 +14,14 @@ import java.time.LocalDate;
  * @Date 2022 Jul 12
  **/
 
-
+@Entity(name = "Rent_Request")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@ToString
 public class RentRequest {
-    private String RequestCode;
+    @Id
+    private String requestCode;
     private LocalDate date;
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "userNicNo",referencedColumnName = "id",nullable = false)
