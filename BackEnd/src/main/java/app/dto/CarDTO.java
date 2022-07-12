@@ -27,4 +27,5 @@ public class CarDTO {
     private Double MonthlyRate;
     private Double FreeMileage;
     private Double ExtraMileagePrice;
+    private int availability;
 }

@@ -46,7 +46,7 @@ public class CarController {
     }
 
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/file",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil uploadFiles(@RequestPart("files") MultipartFile[] files,String regNum) throws IOException {
         for (MultipartFile file:files) {
             CarImages carImages = databaseFileService.saveCarImage(file);

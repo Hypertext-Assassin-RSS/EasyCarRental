@@ -32,4 +32,5 @@ public class Car {
     private Double MonthlyRate;
     private Double FreeMileage;
     private Double ExtraMileagePrice;
+    private int availability;
 }
