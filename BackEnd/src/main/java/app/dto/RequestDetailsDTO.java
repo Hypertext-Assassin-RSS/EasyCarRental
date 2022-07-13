@@ -1,6 +1,7 @@
 package app.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,9 @@ import java.util.List;
 @ToString
 public class RequestDetailsDTO {
     private String requestCode;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickupDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
     private String pickupAddress;
     private String driverRequest;

@@ -28,4 +28,10 @@ public class RentRequestController {
        rentRequestService.makeRentRequest(rentRequestDTO);
        return new ResponseUtil(200,"RentRequest Code : "+rentRequestDTO.getRequestCode()+" is successful",null);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllRentRequests(){
+        return new ResponseUtil(200,"Done",rentRequestService.getAllRentRequest());
+    }
 }

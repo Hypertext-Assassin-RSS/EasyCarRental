@@ -2,6 +2,8 @@ package app.service;
 
 import app.dto.RentRequestDTO;
 
+import java.util.List;
+
 /**
  * @PROJECT EasyCarRental
  * @Author Rajith Sanjaya
@@ -10,4 +12,6 @@ import app.dto.RentRequestDTO;
 public interface RentRequestService {
 
     public void makeRentRequest(RentRequestDTO rentRequestDTO);
+
+    public List<RentRequestDTO> getAllRentRequest();
 }

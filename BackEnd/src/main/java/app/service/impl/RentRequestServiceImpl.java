@@ -8,9 +8,12 @@ import app.repo.CarRepo;
 import app.repo.RentRequestRepo;
 import app.service.RentRequestService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @PROJECT EasyCarRental
@@ -49,11 +52,12 @@ public class RentRequestServiceImpl implements RentRequestService {
                 throw new RuntimeException("Request : "+rentRequestDTO.getRequestCode()+" made failed!!!");
             }
         }
+
+    @Override
+    public List<RentRequestDTO> getAllRentRequest() {
+        return modelMapper.map(rentRequestRepo.findAll(),new TypeToken<List<RentRequestDTO>>(){}.getType());
+
     }
-       /*if (!rentRequestRepo.existsById(rentRequestDTO.getRequestCode())){
-           rentRequestRepo.save(modelMapper.map(rentRequestDTO, RentRequest.class));
-       }else {
-           throw new RuntimeException("Request : "+rentRequestDTO.getRequestCode()+" made failed!!!");
-       }
-    }*/
+}
+
 
