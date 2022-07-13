@@ -97,4 +97,9 @@ public class GustUserController {
         }
         return  new ResponseUtil(200,"Lic No : "+licNo+" image is Saved",null);
     }
+
+    @GetMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil checkRentRequestStatus(@RequestParam String id){
+        return new ResponseUtil(200,"Your Rent Request Status : "+gustUserService.checkRequestStatus(id),null);
+    }
 }

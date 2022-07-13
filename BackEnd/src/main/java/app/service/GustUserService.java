@@ -24,4 +24,6 @@ public interface GustUserService {
     GustUserDTO searchGustUser(String id);
 
     public List<GustUserDTO> getAllUsersRegisterToday(LocalDate date);
+
+    public String checkRequestStatus(String id);
 }

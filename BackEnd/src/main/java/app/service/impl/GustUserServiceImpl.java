@@ -1,9 +1,12 @@
 package app.service.impl;
 
 import app.dto.GustUserDTO;
+import app.dto.RentRequestDTO;
 import app.entity.GustUser;
+import app.entity.RentRequest;
 import app.repo.NicRepo;
 import app.repo.GustUserRepo;
+import app.repo.RentRequestRepo;
 import app.service.GustUserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -29,6 +32,9 @@ public class GustUserServiceImpl implements GustUserService {
 
     @Autowired
     ModelMapper modelMapper;
+
+    @Autowired
+    RentRequestRepo rentRequestRepo;
 
     @Override
     public void registerGustUser(GustUserDTO gustUserDTO) {
@@ -75,5 +81,15 @@ public class GustUserServiceImpl implements GustUserService {
     @Override
     public List<GustUserDTO> getAllUsersRegisterToday(LocalDate date) {
         return modelMapper.map(gustUserRepo.getAllByRegisterDate(date),new TypeToken<List<GustUserDTO>>(){}.getType());
+    }
+
+    @Override
+    public String checkRequestStatus(String id) {
+        RentRequest rentRequest = rentRequestRepo.getRentRequestByGustUser_Id(id);
+        if (rentRequestRepo.existsRentRequestByGustUser_Id(id)){
+            return rentRequest.getStatus();
+        }else {
+            throw new RuntimeException("No Rent Request Found By User ID : "+id);
+        }
     }
 }
