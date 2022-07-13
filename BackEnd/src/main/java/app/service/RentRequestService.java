@@ -23,4 +23,6 @@ public interface RentRequestService {
     public RentRequestDTO searchRentRequest(String requestCode);
 
     public List<RentRequestDTO> getRentRequestToday(LocalDate date);
+
+    public void changeRentRequestStatus(String requestCode,String status);
 }

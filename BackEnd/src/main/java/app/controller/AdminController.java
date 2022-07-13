@@ -66,4 +66,11 @@ public class AdminController {
         return new ResponseUtil(200,"Done",gustUserService.getAllUsersRegisterToday(date));
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(params = {"requestCode","status"})
+    public ResponseUtil changeRentRequestStatus(String requestCode,String status){
+        rentRequestService.changeRentRequestStatus(requestCode, status);
+        return  new ResponseUtil(200,"RentRequest : "+requestCode+" status changed",null);
+    }
+
 }

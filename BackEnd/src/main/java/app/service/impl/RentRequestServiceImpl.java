@@ -113,6 +113,17 @@ public class RentRequestServiceImpl implements RentRequestService {
     public List<RentRequestDTO> getRentRequestToday(LocalDate date) {
         return modelMapper.map(rentRequestRepo.getRentRequestByDate(date),new TypeToken<List<RentRequestDTO>>(){}.getType());
     }
+
+    @Override
+    public void changeRentRequestStatus(String requestCode,String status) {
+        RentRequestDTO rentRequestDTO = modelMapper.map(rentRequestRepo.findById(requestCode), RentRequestDTO.class);
+        if (rentRequestRepo.existsById(requestCode)){
+            rentRequestDTO.setStatus(status);
+            rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+        }else {
+            throw new RuntimeException("RentRequest : "+requestCode+" is not found");
+        }
+    }
 }
 
 
