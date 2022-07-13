@@ -40,4 +40,13 @@ public class CarServiceImpl implements CarService {
     public List<CarDTO> getAllCars() {
         return modelMapper.map(carRepo.findAll(),new TypeToken<List<CarDTO>>(){}.getType());
     }
+
+    @Override
+    public CarDTO searchCar(String RegistrationNumber) {
+        if (carRepo.existsById(RegistrationNumber)){
+            return modelMapper.map(carRepo.findById(RegistrationNumber),CarDTO.class);
+        }else {
+            throw new RuntimeException("No Car Found By RegistrationNumber : "+RegistrationNumber);
+        }
+    }
 }

@@ -14,4 +14,6 @@ public interface CarService {
     public void saveCar(CarDTO carDTO);
 
     public List<CarDTO> getAllCars();
+
+    public CarDTO searchCar(String RegistrationNumber);
 }

@@ -46,6 +46,12 @@ public class CarController {
     }
 
 
+    @GetMapping(path = "/{registrationNumber}")
+    public ResponseUtil searchCar(@PathVariable String registrationNumber){
+        return new ResponseUtil(200,"Done",carService.searchCar(registrationNumber));
+    }
+
+
     @PostMapping(value = "/file",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil uploadFiles(@RequestPart("files") MultipartFile[] files,String regNum) throws IOException {
         for (MultipartFile file:files) {
