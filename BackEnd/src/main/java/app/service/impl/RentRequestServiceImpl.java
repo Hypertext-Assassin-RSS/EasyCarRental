@@ -58,6 +58,13 @@ public class RentRequestServiceImpl implements RentRequestService {
         return modelMapper.map(rentRequestRepo.findAll(),new TypeToken<List<RentRequestDTO>>(){}.getType());
 
     }
+
+    @Override
+    public void updateRentRequest(RentRequestDTO rentRequestDTO) {
+        if (rentRequestRepo.existsById(rentRequestDTO.getRequestCode())){
+                rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+        }
+    }
 }
 
 

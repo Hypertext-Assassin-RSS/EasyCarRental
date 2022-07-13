@@ -14,4 +14,6 @@ public interface RentRequestService {
     public void makeRentRequest(RentRequestDTO rentRequestDTO);
 
     public List<RentRequestDTO> getAllRentRequest();
+
+    public void updateRentRequest(RentRequestDTO rentRequestDTO);
 }

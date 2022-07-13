@@ -34,4 +34,11 @@ public class RentRequestController {
     public ResponseUtil getAllRentRequests(){
         return new ResponseUtil(200,"Done",rentRequestService.getAllRentRequest());
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateRentRequest(@RequestBody  RentRequestDTO rentRequestDTO){
+        rentRequestService.updateRentRequest(rentRequestDTO);
+        return new ResponseUtil(200,"Rent Request : "+rentRequestDTO.getRequestCode()+" is Updated",null);
+    }
 }
