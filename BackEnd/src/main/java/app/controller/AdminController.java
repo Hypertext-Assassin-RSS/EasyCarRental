@@ -80,4 +80,11 @@ public class AdminController {
         return new ResponseUtil(200,"User : "+id+" verification status change to "+status,null);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(value = "/changeDriver",params = {"requestCode","driver"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil changeDriverJob(@RequestParam String requestCode,@RequestParam String driver){
+        rentRequestService.changeDriver(requestCode, driver);
+        return  new ResponseUtil(200,"Rent Request : "+requestCode+" change to "+driver,null);
+    }
+
 }

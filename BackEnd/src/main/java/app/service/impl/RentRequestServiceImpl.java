@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @PROJECT EasyCarRental
@@ -119,6 +120,17 @@ public class RentRequestServiceImpl implements RentRequestService {
         RentRequestDTO rentRequestDTO = modelMapper.map(rentRequestRepo.findById(requestCode), RentRequestDTO.class);
         if (rentRequestRepo.existsById(requestCode)){
             rentRequestDTO.setStatus(status);
+            rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+        }else {
+            throw new RuntimeException("RentRequest : "+requestCode+" is not found");
+        }
+    }
+
+    @Override
+    public void changeDriver(String requestCode, String driver) {
+        if (rentRequestRepo.existsById(requestCode)){
+            RentRequestDTO rentRequestDTO = modelMapper.map(rentRequestRepo.findById(requestCode), RentRequestDTO.class);
+            rentRequestDTO.setDriver(driver);
             rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
         }else {
             throw new RuntimeException("RentRequest : "+requestCode+" is not found");

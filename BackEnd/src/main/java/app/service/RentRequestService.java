@@ -25,4 +25,6 @@ public interface RentRequestService {
     public List<RentRequestDTO> getRentRequestToday(LocalDate date);
 
     public void changeRentRequestStatus(String requestCode,String status);
+
+    public void changeDriver(String requestCode,String driver);
 }
