@@ -26,4 +26,5 @@ public class Driver {
     private String address;
     private String contact;
     private Double salary;
+    private int availability;
 }

@@ -31,4 +31,7 @@ public class RentRequest {
 
     @OneToMany(mappedBy = "rentRequests",cascade = CascadeType.ALL)
     private List<RequestDetails> requestDetails;
+
+
+    private  String driver;
 }

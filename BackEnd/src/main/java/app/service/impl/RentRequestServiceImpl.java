@@ -2,9 +2,11 @@ package app.service.impl;
 
 import app.dto.RentRequestDTO;
 import app.entity.Car;
+import app.entity.Driver;
 import app.entity.RentRequest;
 import app.entity.RequestDetails;
 import app.repo.CarRepo;
+import app.repo.DriverRepo;
 import app.repo.RentRequestRepo;
 import app.service.RentRequestService;
 import org.modelmapper.ModelMapper;
@@ -34,16 +36,32 @@ public class RentRequestServiceImpl implements RentRequestService {
     @Autowired
     CarRepo carRepo;
 
+    @Autowired
+    DriverRepo driverRepo;
+
     @Override
     public void makeRentRequest(RentRequestDTO rentRequestDTO) {
             RentRequest rentRequest = modelMapper.map(rentRequestDTO, RentRequest.class);
             if (!rentRequestRepo.existsById(rentRequestDTO.getRequestCode())){
                 for (RequestDetails requestDetails:rentRequest.getRequestDetails()) {
                     Car car = carRepo.findById(requestDetails.getRegistrationNumber()).get();
+                    Boolean driverReq = requestDetails.getDriverRequest();
 
                     if (car.getAvailability() > 0){
                         car.setAvailability(0);
-                        rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+                        if (driverReq){
+                            System.out.println(driverReq);
+                            System.out.println("----------------------------------------------------");
+                            Driver driver = driverRepo.assignRandomDriver();
+                            System.out.println(driver.toString());
+                            rentRequestDTO.setDriver(driver.getName());
+                            System.out.println("----------------------------------------------------");
+                            rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+                        }else {
+                            rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+                        }
+
+
                     }else {
                         throw new RuntimeException("Car : "+car.getRegistrationNumber()+" is not available");
                     }

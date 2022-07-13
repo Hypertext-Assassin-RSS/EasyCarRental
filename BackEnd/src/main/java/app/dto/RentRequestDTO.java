@@ -27,4 +27,5 @@ public class RentRequestDTO {
      private LocalDate date;
      private GustUserDTO gustUser;
      private List<RequestDetailsDTO> requestDetails;
+     private  String driver;
 }

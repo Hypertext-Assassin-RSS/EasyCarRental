@@ -27,6 +27,6 @@ public class RequestDetailsDTO {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
     private String pickupAddress;
-    private String driverRequest;
+    private Boolean driverRequest;
     private String registrationNumber;
 }

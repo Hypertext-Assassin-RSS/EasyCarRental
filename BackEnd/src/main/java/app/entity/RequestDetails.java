@@ -31,7 +31,7 @@ public class RequestDetails {
     private LocalDate pickupDate;
     private LocalDate returnDate;
     private String pickupAddress;
-    private String driverRequest;
+    private Boolean driverRequest;
 
     @ManyToOne
     @JoinColumn(name = "requestCode",referencedColumnName = "requestCode",insertable = false,updatable = false)
