@@ -65,6 +65,23 @@ public class RentRequestServiceImpl implements RentRequestService {
                 rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
         }
     }
+
+    @Override
+    public void deleteRentRequest(String requestCode) {
+        RentRequest  rentRequest = rentRequestRepo.findById(requestCode).get();
+        if (rentRequestRepo.existsById(requestCode)){
+            for (RequestDetails requestDetails:rentRequest.getRequestDetails()) {
+                Car car = carRepo.findById(requestDetails.getRegistrationNumber()).get();
+                if (car.getAvailability() > 0){
+                    rentRequestRepo.deleteById(requestCode);
+                }else {
+                    throw new RuntimeException("Car : "+car.getRegistrationNumber()+" is not Returned yet!!");
+                }
+            }
+        }else {
+            throw new RuntimeException("Request : "+requestCode+" not found!!!");
+        }
+    }
 }
 
 

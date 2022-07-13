@@ -41,4 +41,11 @@ public class RentRequestController {
         rentRequestService.updateRentRequest(rentRequestDTO);
         return new ResponseUtil(200,"Rent Request : "+rentRequestDTO.getRequestCode()+" is Updated",null);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @DeleteMapping(params = {"requestCode"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteRentRequest(@RequestParam String requestCode){
+        rentRequestService.deleteRentRequest(requestCode);
+        return  new ResponseUtil(200,"Rent Request : "+requestCode+" is deleted",null);
+    }
 }

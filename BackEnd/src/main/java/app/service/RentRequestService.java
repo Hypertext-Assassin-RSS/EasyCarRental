@@ -16,4 +16,6 @@ public interface RentRequestService {
     public List<RentRequestDTO> getAllRentRequest();
 
     public void updateRentRequest(RentRequestDTO rentRequestDTO);
+
+    public void deleteRentRequest(String requestCode);
 }
