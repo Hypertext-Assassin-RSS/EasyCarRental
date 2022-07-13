@@ -27,4 +27,5 @@ public class GustUserDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate registerDate;
+    private String verification = "pending";
 }

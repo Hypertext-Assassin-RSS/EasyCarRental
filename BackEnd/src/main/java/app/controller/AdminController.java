@@ -73,4 +73,11 @@ public class AdminController {
         return  new ResponseUtil(200,"RentRequest : "+requestCode+" status changed",null);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(params = {"id","status"})
+    public ResponseUtil changeVerificationStatus(@RequestParam String id,String status){
+        gustUserService.changeVerificationStatus(id, status);
+        return new ResponseUtil(200,"User : "+id+" verification status change to "+status,null);
+    }
+
 }

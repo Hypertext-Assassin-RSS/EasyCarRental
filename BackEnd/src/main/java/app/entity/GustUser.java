@@ -30,4 +30,5 @@ public class GustUser {
     private String address;
     private String contact;
     private LocalDate registerDate;
+    private String verification = "pending";
 }

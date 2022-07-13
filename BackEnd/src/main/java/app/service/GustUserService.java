@@ -26,4 +26,6 @@ public interface GustUserService {
     public List<GustUserDTO> getAllUsersRegisterToday(LocalDate date);
 
     public String checkRequestStatus(String id);
+
+    public void changeVerificationStatus(String id,String status);
 }

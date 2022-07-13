@@ -92,4 +92,15 @@ public class GustUserServiceImpl implements GustUserService {
             throw new RuntimeException("No Rent Request Found By User ID : "+id);
         }
     }
+
+    @Override
+    public void changeVerificationStatus(String id,String status) {
+        GustUser gustUser = gustUserRepo.findById(id).get();
+        if (gustUserRepo.existsById(id)){
+            gustUser.setVerification(status);
+            gustUserRepo.save(gustUser);
+        } else {
+            throw  new RuntimeException("No user found to change verification");
+        }
+    }
 }
