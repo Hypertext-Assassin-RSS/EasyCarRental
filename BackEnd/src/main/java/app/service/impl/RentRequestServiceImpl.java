@@ -82,6 +82,15 @@ public class RentRequestServiceImpl implements RentRequestService {
             throw new RuntimeException("Request : "+requestCode+" not found!!!");
         }
     }
+
+    @Override
+    public RentRequestDTO searchRentRequest(String requestCode) {
+        if (rentRequestRepo.existsById(requestCode)){
+            return  modelMapper.map(rentRequestRepo.findById(requestCode),RentRequestDTO.class);
+        }else {
+            throw new RuntimeException("No Rent Request Found By Code : "+requestCode);
+        }
+    }
 }
 
 

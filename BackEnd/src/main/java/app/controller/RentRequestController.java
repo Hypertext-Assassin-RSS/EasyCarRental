@@ -48,4 +48,10 @@ public class RentRequestController {
         rentRequestService.deleteRentRequest(requestCode);
         return  new ResponseUtil(200,"Rent Request : "+requestCode+" is deleted",null);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/{requestCode}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchRentRequest(@PathVariable String requestCode){
+        return new ResponseUtil(200,"Done",rentRequestService.searchRentRequest(requestCode));
+    }
 }

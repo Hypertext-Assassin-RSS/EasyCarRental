@@ -65,7 +65,7 @@ public class GustUserServiceImpl implements GustUserService {
     @Override
     public GustUserDTO searchGustUser(String id) {
         if (gustUserRepo.existsById(id)){
-            return modelMapper.map(gustUserRepo.findById(id).get(),GustUserDTO.class);
+            return modelMapper.map(gustUserRepo.findById(id),GustUserDTO.class);
         }else {
             throw new RuntimeException("User from ID : "+id+" not Exists to Find!!!");
         }

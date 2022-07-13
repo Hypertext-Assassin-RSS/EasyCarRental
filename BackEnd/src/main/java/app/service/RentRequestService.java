@@ -18,4 +18,6 @@ public interface RentRequestService {
     public void updateRentRequest(RentRequestDTO rentRequestDTO);
 
     public void deleteRentRequest(String requestCode);
+
+    public RentRequestDTO searchRentRequest(String requestCode);
 }
