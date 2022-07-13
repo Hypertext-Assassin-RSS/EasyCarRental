@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -108,6 +109,11 @@ public class RentRequestServiceImpl implements RentRequestService {
         }else {
             throw new RuntimeException("No Rent Request Found By Code : "+requestCode);
         }
+    }
+
+    @Override
+    public List<RentRequestDTO> getRentRequestToday(LocalDate date) {
+        return modelMapper.map(rentRequestRepo.getRentRequestByDate(date),new TypeToken<List<RentRequestDTO>>(){}.getType());
     }
 }
 

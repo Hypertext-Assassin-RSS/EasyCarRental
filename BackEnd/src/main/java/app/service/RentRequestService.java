@@ -2,6 +2,7 @@ package app.service;
 
 import app.dto.RentRequestDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -20,4 +21,6 @@ public interface RentRequestService {
     public void deleteRentRequest(String requestCode);
 
     public RentRequestDTO searchRentRequest(String requestCode);
+
+    public List<RentRequestDTO> getRentRequestToday(LocalDate date);
 }
