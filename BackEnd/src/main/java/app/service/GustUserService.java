@@ -28,4 +28,6 @@ public interface GustUserService {
     public String checkRequestStatus(String id);
 
     public void changeVerificationStatus(String id,String status);
+
+    public String checkVerificationStatus(String id);
 }

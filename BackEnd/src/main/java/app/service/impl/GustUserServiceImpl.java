@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @PROJECT EasyCarRental
@@ -102,5 +103,16 @@ public class GustUserServiceImpl implements GustUserService {
         } else {
             throw  new RuntimeException("No user found to change verification");
         }
+    }
+
+    @Override
+    public String checkVerificationStatus(String id) {
+        if (gustUserRepo.existsById(id)){
+            GustUser gustUser = gustUserRepo.findById(id).get();
+            return gustUser.getVerification();
+        }else {
+            throw new RuntimeException("User Not Found By ID : "+id);
+        }
+
     }
 }

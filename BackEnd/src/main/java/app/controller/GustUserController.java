@@ -65,11 +65,13 @@ public class GustUserController {
         return new ResponseUtil(200,"User ID :"+id+" Deleted!!!",null);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil searchGustUser(@PathVariable  String id){
         return new ResponseUtil(200,"Done",gustUserService.searchGustUser(id));
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/nic",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseUtil uploadNic(@RequestPart("nicFiles") MultipartFile[] files, String nicNo) throws IOException {
         for (MultipartFile file:files) {
@@ -84,6 +86,7 @@ public class GustUserController {
         return  new ResponseUtil(200,"Nic No : "+nicNo+" image is Saved",null);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/lic",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil uploadLic(@RequestPart("licFiles") MultipartFile[] files, String licNo) throws IOException {
         for (MultipartFile file:files) {
@@ -98,8 +101,15 @@ public class GustUserController {
         return  new ResponseUtil(200,"Lic No : "+licNo+" image is Saved",null);
     }
 
-    @GetMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(value = "/rent",params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil checkRentRequestStatus(@RequestParam String id){
         return new ResponseUtil(200,"Your Rent Request Status : "+gustUserService.checkRequestStatus(id),null);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(value = "/verification",params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil checkVerificationStatus(@RequestParam String id){
+        return new ResponseUtil(200,"Your verification is " +gustUserService.checkVerificationStatus(id),null);
     }
 }
