@@ -30,7 +30,7 @@ public class RequestDetails {
     private String registrationNumber;
     private LocalDate pickupDate;
     private LocalDate returnDate;
-    private String pickupAddress;
+    private String pickupAddress="Company";
     private Boolean driverRequest;
 
     @ManyToOne

@@ -5,6 +5,7 @@ import app.dto.DriverDTO;
 import app.dto.GustUserDTO;
 import app.service.AccountService;
 import app.service.DriverService;
+import app.service.ScheduleService;
 import app.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,9 @@ public class DriverController {
 
     @Autowired
     AccountService accountService;
+
+    @Autowired
+    ScheduleService scheduleService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -61,5 +65,11 @@ public class DriverController {
     public ResponseUtil searchDriver(@PathVariable String id){
         return new ResponseUtil(200,"Done!", driverService.searchDriver(id));
 
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(value = "/schedule",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getSchedule(@RequestParam String driver){
+        return new ResponseUtil(200,"Done",scheduleService.getAll(driver));
     }
 }

@@ -2,6 +2,7 @@ package app.repo;
 
 import app.entity.RentRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -21,4 +22,7 @@ public interface RentRequestRepo extends JpaRepository<RentRequest,String> {
     RentRequest getRentRequestByGustUser_Id(String userNicNo);
 
     Boolean existsRentRequestByGustUser_Id(String id);
+
+    @Query(value = "select * from rent_request where driver=?1", nativeQuery = true)
+    public List<RentRequest> getAllByDriver(String driver);
 }
