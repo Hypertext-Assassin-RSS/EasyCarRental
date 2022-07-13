@@ -47,22 +47,20 @@ public class RentRequestServiceImpl implements RentRequestService {
                 for (RequestDetails requestDetails:rentRequest.getRequestDetails()) {
                     Car car = carRepo.findById(requestDetails.getRegistrationNumber()).get();
                     Boolean driverReq = requestDetails.getDriverRequest();
-
                     if (car.getAvailability() > 0){
                         car.setAvailability(0);
                         if (driverReq){
-                            System.out.println(driverReq);
-                            System.out.println("----------------------------------------------------");
                             Driver driver = driverRepo.assignRandomDriver();
-                            System.out.println(driver.toString());
-                            rentRequestDTO.setDriver(driver.getName());
-                            System.out.println("----------------------------------------------------");
-                            rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+                            if (!(driver == null)){
+                                driver.setAvailability(0);
+                                rentRequestDTO.setDriver(driver.getName());
+                                rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+                            }else {
+                                throw new RuntimeException("Divers not available at this time");
+                            }
                         }else {
                             rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
                         }
-
-
                     }else {
                         throw new RuntimeException("Car : "+car.getRegistrationNumber()+" is not available");
                     }

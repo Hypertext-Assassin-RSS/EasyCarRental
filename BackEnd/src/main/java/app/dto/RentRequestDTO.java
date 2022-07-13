@@ -28,4 +28,5 @@ public class RentRequestDTO {
      private GustUserDTO gustUser;
      private List<RequestDetailsDTO> requestDetails;
      private  String driver;
+     private String status = "pending";
 }

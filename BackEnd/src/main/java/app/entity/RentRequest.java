@@ -34,4 +34,5 @@ public class RentRequest {
 
 
     private  String driver;
+    private String status = "pending";
 }

@@ -17,6 +17,6 @@ import java.util.List;
 @Repository
 public interface DriverRepo extends JpaRepository<Driver,String> {
 
-    @Query(value = "SELECT * FROM driver_details WHERE availability = '1' ORDER BY  RAND() LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM driver_details WHERE availability = 1 ORDER BY  RAND() LIMIT 1", nativeQuery = true)
     Driver assignRandomDriver();
 }
