@@ -3,6 +3,7 @@ package app.service.impl;
 import app.dto.CarDTO;
 import app.entity.Car;
 import app.repo.CarRepo;
+import app.repo.RentRequestRepo;
 import app.service.CarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -23,6 +24,9 @@ public class CarServiceImpl implements CarService {
 
     @Autowired
     CarRepo  carRepo;
+
+    @Autowired
+    RentRequestRepo rentRequestRepo;
 
     @Autowired
     ModelMapper modelMapper;
@@ -47,6 +51,20 @@ public class CarServiceImpl implements CarService {
             return modelMapper.map(carRepo.findById(RegistrationNumber),CarDTO.class);
         }else {
             throw new RuntimeException("No Car Found By RegistrationNumber : "+RegistrationNumber);
+        }
+    }
+
+    @Override
+    public void deleteCar(String RegistrationNumber) {
+        Car car = carRepo.findById(RegistrationNumber).get();
+        if (carRepo.existsById(RegistrationNumber)){
+            if (car.getAvailability() > 0){
+                carRepo.deleteById(RegistrationNumber);
+            }else {
+                throw new RuntimeException("This Car : "+RegistrationNumber+" is not returned by Customer yet");
+            }
+        }else {
+            throw new RuntimeException("No Car Found by RegistrationNumber : "+RegistrationNumber);
         }
     }
 }
