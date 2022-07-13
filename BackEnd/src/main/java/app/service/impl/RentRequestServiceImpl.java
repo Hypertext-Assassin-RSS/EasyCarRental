@@ -1,7 +1,10 @@
 package app.service.impl;
 
 import app.dto.RentRequestDTO;
+import app.entity.Car;
 import app.entity.RentRequest;
+import app.entity.RequestDetails;
+import app.repo.CarRepo;
 import app.repo.RentRequestRepo;
 import app.service.RentRequestService;
 import org.modelmapper.ModelMapper;
@@ -25,12 +28,32 @@ public class RentRequestServiceImpl implements RentRequestService {
     @Autowired
     RentRequestRepo rentRequestRepo;
 
+    @Autowired
+    CarRepo carRepo;
+
     @Override
     public void makeRentRequest(RentRequestDTO rentRequestDTO) {
-       if (!rentRequestRepo.existsById(rentRequestDTO.getRequestCode())){
+            RentRequest rentRequest = modelMapper.map(rentRequestDTO, RentRequest.class);
+            if (!rentRequestRepo.existsById(rentRequestDTO.getRequestCode())){
+                for (RequestDetails requestDetails:rentRequest.getRequestDetails()) {
+                    Car car = carRepo.findById(requestDetails.getRegistrationNumber()).get();
+
+                    if (car.getAvailability() > 0){
+                        car.setAvailability(0);
+                        rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
+                    }else {
+                        throw new RuntimeException("Car : "+car.getRegistrationNumber()+" is not available");
+                    }
+                }
+            }else {
+                throw new RuntimeException("Request : "+rentRequestDTO.getRequestCode()+" made failed!!!");
+            }
+        }
+    }
+       /*if (!rentRequestRepo.existsById(rentRequestDTO.getRequestCode())){
            rentRequestRepo.save(modelMapper.map(rentRequestDTO, RentRequest.class));
        }else {
            throw new RuntimeException("Request : "+rentRequestDTO.getRequestCode()+" made failed!!!");
        }
-    }
-}
+    }*/
+
