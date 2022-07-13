@@ -2,6 +2,7 @@ package app.service;
 
 import app.dto.GustUserDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -21,4 +22,6 @@ public interface GustUserService {
     public void deleteGustUser(String id);
 
     GustUserDTO searchGustUser(String id);
+
+    public List<GustUserDTO> getAllUsersRegisterToday(LocalDate date);
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -69,5 +70,10 @@ public class GustUserServiceImpl implements GustUserService {
         }else {
             throw new RuntimeException("User from ID : "+id+" not Exists to Find!!!");
         }
+    }
+
+    @Override
+    public List<GustUserDTO> getAllUsersRegisterToday(LocalDate date) {
+        return modelMapper.map(gustUserRepo.getAllByRegisterDate(date),new TypeToken<List<GustUserDTO>>(){}.getType());
     }
 }
