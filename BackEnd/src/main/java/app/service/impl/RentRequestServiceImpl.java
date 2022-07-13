@@ -53,7 +53,7 @@ public class RentRequestServiceImpl implements RentRequestService {
                             Driver driver = driverRepo.assignRandomDriver();
                             if (!(driver == null)){
                                 driver.setAvailability(0);
-                                rentRequestDTO.setDriver(driver.getName());
+                                rentRequestDTO.setDriver(driver.getId());
                                 rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
                             }else {
                                 throw new RuntimeException("Divers not available at this time");
