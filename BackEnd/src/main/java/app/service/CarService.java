@@ -18,4 +18,7 @@ public interface CarService {
     public CarDTO searchCar(String RegistrationNumber);
 
     public void  deleteCar(String RegistrationNumber);
+
+
+    public void updateCar(CarDTO carDTO);
 }

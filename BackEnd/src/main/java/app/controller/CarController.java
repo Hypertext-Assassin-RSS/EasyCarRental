@@ -58,6 +58,13 @@ public class CarController {
         return new ResponseUtil(200,"Car : "+registrationNumber+" is deleted",null);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateCar(@RequestBody CarDTO carDTO){
+        carService.updateCar(carDTO);
+        return new ResponseUtil(200,"Car : "+carDTO.getRegistrationNumber()+" is Updated",null);
+    }
+
 
     @PostMapping(value = "/file",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil uploadFiles(@RequestPart("files") MultipartFile[] files,String regNum) throws IOException {

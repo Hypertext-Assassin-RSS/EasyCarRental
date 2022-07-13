@@ -67,4 +67,18 @@ public class CarServiceImpl implements CarService {
             throw new RuntimeException("No Car Found by RegistrationNumber : "+RegistrationNumber);
         }
     }
+
+    @Override
+    public void updateCar(CarDTO carDTO) {
+        Car car = carRepo.findById(carDTO.getRegistrationNumber()).get();
+        if (carRepo.existsById(carDTO.getRegistrationNumber())){
+            if (car.getAvailability() > 0){
+                carRepo.save(modelMapper.map(carDTO,Car.class));
+            }else {
+                throw new RuntimeException("This Car : "+carDTO.getRegistrationNumber()+" is not returned by Customer yet");
+            }
+        }else {
+            throw new RuntimeException("No Car Found by RegistrationNumber : "+carDTO.getRegistrationNumber());
+        }
+    }
 }
