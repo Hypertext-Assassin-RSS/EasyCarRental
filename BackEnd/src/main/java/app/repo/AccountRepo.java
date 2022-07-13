@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountRepo extends JpaRepository<Account,String> {
     Boolean existsRegisterUserByEmail(String email);
+
+    Boolean existsAccountByEmailAndPassword(String email,String password);
 }

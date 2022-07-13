@@ -43,4 +43,13 @@ public class AccountServiceImpl implements AccountService {
             throw  new RuntimeException("Update Fail");
         }
     }
+
+    @Override
+    public Boolean login(String email, String password) {
+        if (accountRepo.existsAccountByEmailAndPassword(email, password)) {
+            return true;
+        }else {
+            throw new RuntimeException("No User Found Please Check Credentials");
+        }
+    }
 }

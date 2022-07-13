@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  **/
 
 @RestController
-@RequestMapping("api/v1/Register")
+@RequestMapping("api/v1/Account")
 @CrossOrigin
 public class AccountController {
 
@@ -27,6 +27,11 @@ public class AccountController {
         System.out.println(accountDTO.toString());
         accountService.updateAccount(accountDTO);
         return new ResponseUtil(200,"User ID : "+ accountDTO.getId()+"Email or Password  Updated!!!",null);
+    }
+
+    @GetMapping(params = {"email","password"})
+    private ResponseUtil login(@RequestParam("email") String email,@RequestParam("password") String password){
+        return new ResponseUtil(200,"Log in Success",accountService.login(email, password));
     }
 
 }

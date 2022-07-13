@@ -11,4 +11,6 @@ public interface AccountService {
     public void saveAccount(AccountDTO accountDTO);
 
     public void updateAccount(AccountDTO accountDTO);
+
+    public Boolean login(String email,String password);
 }
