@@ -11,4 +11,6 @@ public interface PaymentService {
     public String calculateWaiverPayment(String requestCode);
 
     public String calculateRentalPayment(String id);
+
+    public String carInspection(String registrationNumber,String status,double damageCost);
 }

@@ -2,10 +2,7 @@ package app.controller;
 
 import app.dto.AccountDTO;
 import app.dto.AdminDTO;
-import app.service.AccountService;
-import app.service.AdminService;
-import app.service.GustUserService;
-import app.service.RentRequestService;
+import app.service.*;
 import app.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,6 +34,9 @@ public class AdminController {
 
     @Autowired
     GustUserService gustUserService;
+
+    @Autowired
+    PaymentService paymentService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -84,6 +84,12 @@ public class AdminController {
     public ResponseUtil changeDriverJob(@RequestParam String requestCode,@RequestParam String driver){
         rentRequestService.changeDriver(requestCode, driver);
         return  new ResponseUtil(200,"Rent Request : "+requestCode+" change to "+driver,null);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(value = "/inspection",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil inspection(String registrationNumber,String status,double damageCost){
+        return new ResponseUtil(200,"Done",paymentService.carInspection(registrationNumber, status, damageCost));
     }
 
 }

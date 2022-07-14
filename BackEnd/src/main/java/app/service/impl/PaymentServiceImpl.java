@@ -5,9 +5,11 @@ import app.dto.RentRequestDTO;
 import app.dto.RequestDetailsDTO;
 import app.entity.Car;
 import app.entity.RentRequest;
+import app.entity.ReturnCar;
 import app.repo.CarRepo;
 import app.repo.GustUserRepo;
 import app.repo.RentRequestRepo;
+import app.repo.ReturnCarRepo;
 import app.service.PaymentService;
 import lombok.SneakyThrows;
 import org.modelmapper.ModelMapper;
@@ -47,6 +49,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Autowired
     GustUserRepo gustUserRepo;
+
+    @Autowired
+    ReturnCarRepo returnCarRepo;
 
 
     @Override
@@ -145,6 +150,39 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    @Override
+    public String carInspection(String registrationNumber,String status,double damageCost) {
+        Car car = modelMapper.map(carRepo.findById(registrationNumber), Car.class);
+        if (returnCarRepo.existsById(registrationNumber)){
+            if (status.equals("Approved")){
+                ReturnCar returnCar = modelMapper.map(returnCarRepo.findById(registrationNumber), ReturnCar.class);
+                returnCar.setStatus(status);
+
+                returnCarRepo.save(returnCar);
+
+                return "NO damage has been to car return Waiver payment";
+            }else {
+
+                String type = car.getType();
+
+                if (type.equals("General")){
+                    double returnpayment = General - damageCost;
+                    return "car had a damage total damage cost is : "+damageCost+" remaining balance of wavier payment is : "+returnpayment;
+                } else if (type.equals("Premium")) {
+                    double returnpayment = Premium - damageCost;
+                    return "car had a damage total damage cost is : "+damageCost+" remaining balance of wavier payment is : "+returnpayment;
+                } else if (type.equals("Luxury")) {
+                    double returnpayment = Luxury - damageCost;
+                    return "car had a damage total damage cost is : "+damageCost+" remaining balance of wavier payment is : "+returnpayment;
+                }else {
+                    return "Your rented car had a damage please contact rental service";
+                }
+            }
+
+        }else {
+            throw new RuntimeException("No Return Car Requests By For : "+registrationNumber);
+        }
+    }
 
 
     public long calculatePeriod(LocalDate pickupDate,LocalDate returnDate) {
