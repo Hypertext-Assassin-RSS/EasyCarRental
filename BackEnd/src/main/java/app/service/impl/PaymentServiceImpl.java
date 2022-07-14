@@ -6,6 +6,7 @@ import app.dto.RequestDetailsDTO;
 import app.entity.Car;
 import app.entity.RentRequest;
 import app.repo.CarRepo;
+import app.repo.GustUserRepo;
 import app.repo.RentRequestRepo;
 import app.service.PaymentService;
 import lombok.SneakyThrows;
@@ -44,6 +45,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     CarRepo carRepo;
 
+    @Autowired
+    GustUserRepo gustUserRepo;
+
 
     @Override
     public String calculateWaiverPayment(String requestCode) {
@@ -78,63 +82,67 @@ public class PaymentServiceImpl implements PaymentService {
     @SneakyThrows
     @Override
     public String calculateRentalPayment(String id) {
-        RentRequest rentRequest = rentRequestRepo.getRentRequestByGustUser_Id(id);
-        System.out.println(rentRequest.getRequestCode());
-        System.out.println("----------------------------------------------------");
-        if (rentRequestRepo.existsById(rentRequest.getRequestCode())) {
-            RentRequestDTO rentRequestDTO = modelMapper.map(rentRequestRepo.findById(rentRequest.getRequestCode()), RentRequestDTO.class);
-            for (RequestDetailsDTO requestDetail : rentRequestDTO.getRequestDetails()) {
+        if (gustUserRepo.existsById(id)){
+            RentRequest rentRequest = rentRequestRepo.getRentRequestByGustUser_Id(id);
+            System.out.println(rentRequest.getRequestCode());
+            System.out.println("----------------------------------------------------");
+            if (rentRequestRepo.existsById(rentRequest.getRequestCode())) {
+                RentRequestDTO rentRequestDTO = modelMapper.map(rentRequestRepo.findById(rentRequest.getRequestCode()), RentRequestDTO.class);
+                for (RequestDetailsDTO requestDetail : rentRequestDTO.getRequestDetails()) {
 
-                System.out.println(requestDetail.toString());
-
-                System.out.println("----------------------------------------------------");
-                System.out.println(requestDetail.getPickupDate());
-                System.out.println(requestDetail.getReturnDate());
-                System.out.println("----------------------------------------------------");
-
-                LocalDate pickupDate = requestDetail.getPickupDate();
-                LocalDate returnDate = requestDetail.getReturnDate();
-
-                long calculatePeriod = calculatePeriod(pickupDate, returnDate);
-
-
-                CarDTO carDTO = modelMapper.map(carRepo.findById(requestDetail.getRegistrationNumber()), CarDTO.class);
-                if (calculatePeriod >= 30) {
-
-                    Double monthlyRate = carDTO.getMonthlyRate();
-                    double period = (int) (calculatePeriod / 30);
+                    System.out.println(requestDetail.toString());
 
                     System.out.println("----------------------------------------------------");
-                    System.out.println("Period :"+calculatePeriod);
+                    System.out.println(requestDetail.getPickupDate());
+                    System.out.println(requestDetail.getReturnDate());
                     System.out.println("----------------------------------------------------");
 
-                    double totalRent = monthlyRate * period;
-                    System.out.println(totalRent);
-                    System.out.println("----------------------------------------------------");
+                    LocalDate pickupDate = requestDetail.getPickupDate();
+                    LocalDate returnDate = requestDetail.getReturnDate();
 
-                    carDTO.setAvailability(1);
-                    carRepo.save(modelMapper.map(carDTO, Car.class));
+                    long calculatePeriod = calculatePeriod(pickupDate, returnDate);
 
-                    return "Yor Total Rent For : "+rentRequest.getRequestCode()+" is Rs :"+totalRent;
-                } else {
-                    double dailyRate = carDTO.getDailyRate();
 
-                    System.out.println("----------------------------------------------------");
-                    System.out.println("Period :"+calculatePeriod);
-                    System.out.println("----------------------------------------------------");
+                    CarDTO carDTO = modelMapper.map(carRepo.findById(requestDetail.getRegistrationNumber()), CarDTO.class);
+                    if (calculatePeriod >= 30) {
 
-                    double totalRent = calculatePeriod * dailyRate;
-                    System.out.println(totalRent);
-                    System.out.println("----------------------------------------------------");
+                        Double monthlyRate = carDTO.getMonthlyRate();
+                        double period = (int) (calculatePeriod / 30);
 
-                    carDTO.setAvailability(1);
-                    carRepo.save(modelMapper.map(carDTO, Car.class));
+                        System.out.println("----------------------------------------------------");
+                        System.out.println("Period :"+calculatePeriod);
+                        System.out.println("----------------------------------------------------");
 
-                    return "Yor Total Rent For : "+rentRequest.getRequestCode()+" is Rs :"+totalRent;
+                        double totalRent = monthlyRate * period;
+                        System.out.println(totalRent);
+                        System.out.println("----------------------------------------------------");
+
+                        carDTO.setAvailability(1);
+                        carRepo.save(modelMapper.map(carDTO, Car.class));
+
+                        return "Yor Total Rent For : "+rentRequest.getRequestCode()+" is Rs :"+totalRent;
+                    } else {
+                        double dailyRate = carDTO.getDailyRate();
+
+                        System.out.println("----------------------------------------------------");
+                        System.out.println("Period :"+calculatePeriod);
+                        System.out.println("----------------------------------------------------");
+
+                        double totalRent = calculatePeriod * dailyRate;
+                        System.out.println(totalRent);
+                        System.out.println("----------------------------------------------------");
+
+                        carDTO.setAvailability(1);
+                        carRepo.save(modelMapper.map(carDTO, Car.class));
+
+                        return "Yor Total Rent For : "+rentRequest.getRequestCode()+" is Rs :"+totalRent;
+                    }
                 }
             }
+            throw new RuntimeException("No Rental Request For User : "+id);
+        }else {
+            throw new RuntimeException("User Not Found");
         }
-        throw new RuntimeException("Rent Calculate Error Please Contact Rental Service");
     }
 
 
