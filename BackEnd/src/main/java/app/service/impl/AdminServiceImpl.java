@@ -28,19 +28,19 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void saveAdmin(AdminDTO adminDTO) {
-        if (!adminRepo.existsById(adminDTO.getId())){
+        if (!adminRepo.existsById(adminDTO.getId())) {
             adminRepo.save(modelMapper.map(adminDTO, Admin.class));
-        }else {
-            throw new RuntimeException("Admin "+adminDTO.getName()+" data save failed!!!");
+        } else {
+            throw new RuntimeException("Admin " + adminDTO.getName() + " data save failed!!!");
         }
     }
 
     @Override
     public void deleteAdmin(String id) {
-        if (adminRepo.existsById(id)){
+        if (adminRepo.existsById(id)) {
             adminRepo.deleteById(id);
-        }else {
-            throw  new RuntimeException("No Admin found by ID : "+id);
+        } else {
+            throw new RuntimeException("No Admin found by ID : " + id);
         }
     }
 }

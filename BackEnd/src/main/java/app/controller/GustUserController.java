@@ -5,10 +5,7 @@ import app.dto.AccountDTO;
 import app.entity.CarImages;
 import app.entity.LicImage;
 import app.entity.NicImage;
-import app.service.DatabaseFileService;
-import app.service.GustUserService;
-import app.service.AccountService;
-import app.service.PaymentService;
+import app.service.*;
 import app.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +38,9 @@ public class GustUserController {
 
     @Autowired
     PaymentService paymentService;
+
+    @Autowired
+    RentRequestService rentRequestService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -120,6 +120,7 @@ public class GustUserController {
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping(value = "/pay",params = {"id"})
     public ResponseUtil returnCar(@RequestParam String id){
+        rentRequestService.carReturn(id);
         return  new ResponseUtil(200,"Return Request Success,Your WaiverPayment amount will release after car inspection done!",paymentService.calculateRentalPayment(id));
     }
 }

@@ -120,7 +120,7 @@ public class PaymentServiceImpl implements PaymentService {
                         carDTO.setAvailability(1);
                         carRepo.save(modelMapper.map(carDTO, Car.class));
 
-                        return "Yor Total Rent For : "+rentRequest.getRequestCode()+" is Rs :"+totalRent;
+                        return "Your Total Rent For : "+rentRequest.getRequestCode()+" is Rs :"+totalRent;
                     } else {
                         double dailyRate = carDTO.getDailyRate();
 
@@ -135,7 +135,7 @@ public class PaymentServiceImpl implements PaymentService {
                         carDTO.setAvailability(1);
                         carRepo.save(modelMapper.map(carDTO, Car.class));
 
-                        return "Yor Total Rent For : "+rentRequest.getRequestCode()+" is Rs :"+totalRent;
+                        return "Your Total Rent For : "+rentRequest.getRequestCode()+" is Rs :"+totalRent;
                     }
                 }
             }

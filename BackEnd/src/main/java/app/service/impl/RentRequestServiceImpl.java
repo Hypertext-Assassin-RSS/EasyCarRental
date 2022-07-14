@@ -1,13 +1,12 @@
 package app.service.impl;
 
 import app.dto.RentRequestDTO;
-import app.entity.Car;
-import app.entity.Driver;
-import app.entity.RentRequest;
-import app.entity.RequestDetails;
+import app.dto.ReturnCarDTO;
+import app.entity.*;
 import app.repo.CarRepo;
 import app.repo.DriverRepo;
 import app.repo.RentRequestRepo;
+import app.repo.ReturnCarRepo;
 import app.service.RentRequestService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -40,6 +39,9 @@ public class RentRequestServiceImpl implements RentRequestService {
 
     @Autowired
     DriverRepo driverRepo;
+
+    @Autowired
+    ReturnCarRepo returnCarRepo;
 
     @Override
     public void makeRentRequest(RentRequestDTO rentRequestDTO) {
@@ -134,6 +136,30 @@ public class RentRequestServiceImpl implements RentRequestService {
             rentRequestRepo.save(modelMapper.map(rentRequestDTO,RentRequest.class));
         }else {
             throw new RuntimeException("RentRequest : "+requestCode+" is not found");
+        }
+    }
+
+    @Override
+    public void carReturn(String id) {
+        List<RentRequest> rentRequests = rentRequestRepo.getAllByGustUser_Id(id);
+        for (RentRequest rentRequest:rentRequests) {
+            for (RequestDetails requestDetail : rentRequest.getRequestDetails()) {
+                String registrationNumber = requestDetail.getRegistrationNumber();
+                if (!returnCarRepo.existsById(registrationNumber)){
+                    String gustUser = rentRequest.getGustUser().getId();
+                    ReturnCarDTO returnCarDTO = new ReturnCarDTO();
+
+                    returnCarDTO.setRegistrationNumber(registrationNumber);
+                    returnCarDTO.setUserId(gustUser);
+                    returnCarDTO.setStatus("inspection pending");
+
+                    returnCarRepo.save(modelMapper.map(returnCarDTO,ReturnCar.class));
+                }else {
+                    throw new RuntimeException("Already return car request available for car : "+registrationNumber);
+                }
+
+            }
+
         }
     }
 }

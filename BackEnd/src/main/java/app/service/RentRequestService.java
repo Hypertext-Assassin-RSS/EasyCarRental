@@ -27,4 +27,6 @@ public interface RentRequestService {
     public void changeRentRequestStatus(String requestCode,String status);
 
     public void changeDriver(String requestCode,String driver);
+
+    public void carReturn(String id);
 }
