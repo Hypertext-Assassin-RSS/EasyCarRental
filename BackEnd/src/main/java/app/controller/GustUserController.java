@@ -8,6 +8,7 @@ import app.entity.NicImage;
 import app.service.DatabaseFileService;
 import app.service.GustUserService;
 import app.service.AccountService;
+import app.service.PaymentService;
 import app.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,9 @@ public class GustUserController {
 
     @Autowired
     DatabaseFileService databaseFileService;
+
+    @Autowired
+    PaymentService paymentService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -111,5 +115,11 @@ public class GustUserController {
     @GetMapping(value = "/verification",params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil checkVerificationStatus(@RequestParam String id){
         return new ResponseUtil(200,"Your verification is " +gustUserService.checkVerificationStatus(id),null);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(value = "/pay",params = {"id"})
+    public ResponseUtil returnCar(@RequestParam String id){
+        return  new ResponseUtil(200,"Return Request Success,Your WaiverPayment amount will release after car inspection done!",paymentService.calculateRentalPayment(id));
     }
 }

@@ -25,4 +25,6 @@ public interface RentRequestRepo extends JpaRepository<RentRequest,String> {
 
     @Query(value = "select * from rent_request where driver=?1", nativeQuery = true)
     public List<RentRequest> getAllByDriver(String driver);
+
+    public List<RentRequest> getAllByGustUser_Id(String id);
 }

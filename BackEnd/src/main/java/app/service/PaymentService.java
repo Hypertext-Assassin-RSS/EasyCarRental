@@ -9,4 +9,6 @@ package app.service;
 public interface PaymentService {
 
     public String calculateWaiverPayment(String requestCode);
+
+    public String calculateRentalPayment(String id);
 }
