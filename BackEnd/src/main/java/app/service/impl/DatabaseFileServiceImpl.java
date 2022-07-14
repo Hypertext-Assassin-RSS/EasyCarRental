@@ -3,11 +3,13 @@ package app.service.impl;
 import app.entity.CarImages;
 import app.entity.LicImage;
 import app.entity.NicImage;
+import app.entity.PaymentProof;
 import app.exception.FileNotFoundException;
 import app.exception.FileStorageException;
 import app.repo.CarImagesRepo;
 import app.repo.LicRepo;
 import app.repo.NicRepo;
+import app.repo.PaymentProofRepo;
 import app.service.DatabaseFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,10 @@ public class DatabaseFileServiceImpl implements DatabaseFileService {
 
     @Autowired
     private CarImagesRepo carImagesRepo;
+
+
+    @Autowired
+    PaymentProofRepo paymentProofRepo;
 
 
 
@@ -99,6 +105,24 @@ public class DatabaseFileServiceImpl implements DatabaseFileService {
             return carImagesRepo.save(carImages);
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
+    }
+
+    @Override
+    public PaymentProof uploadPaymentProof(MultipartFile file) {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+        try {
+            if(fileName.contains("..")) {
+                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+            }
+
+            PaymentProof paymentProof = new PaymentProof(fileName,file.getContentType(), file.getBytes());
+
+            return paymentProofRepo.save(paymentProof);
+
+        } catch (Exception e) {
+            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", e);
         }
     }
 }

@@ -3,6 +3,7 @@ package app.service;
 import app.entity.CarImages;
 import app.entity.LicImage;
 import app.entity.NicImage;
+import app.entity.PaymentProof;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -19,4 +20,6 @@ public interface DatabaseFileService {
 
 
     public CarImages saveCarImage(MultipartFile file);
+
+    public PaymentProof uploadPaymentProof(MultipartFile file);
 }
