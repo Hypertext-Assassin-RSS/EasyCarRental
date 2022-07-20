@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/Hypertext-Assassin-RSS/EasyCarRental/issues"
   },
-  "homepage": "https://github.com/Hypertext-Assassin-RSS/EasyCarRental#readme"
+  "homepage": "https://github.com/Hypertext-Assassin-RSS/EasyCarRental#readme",
+  "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/material": "^5.9.1",
+    "@mui/styled-engine-sc": "^5.8.0",
+    "styled-components": "^5.3.5"
+  }
 }
