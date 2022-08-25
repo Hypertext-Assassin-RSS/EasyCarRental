@@ -1,134 +1,132 @@
-import React from 'react'
-import {Checkbox, Divider, Grid, Select, Typography} from "@mui/material";
-import Button from "../../Components/controls/Button";
-import {FormControlLabel} from "@material-ui/core";
+import React from "react";
+import registerImg from "../../img/Register.jpg";
+import AnimationButton from "../../Components/Button/AnimationButton";
+import {Alert, Button, Snackbar, Typography} from "@mui/material";
 import '@fontsource/roboto/700.css';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import "./Register.css"
-import "../../img/Register.jpg"
-import MyButton from "../../Components/Button/MyButton";
-import {NavLink} from "react-router-dom";
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import AccountServices from "../../Services/AccountServices";
 
-function Register(props) {
-    const {fullName, email, mobile, address, nic, lic, gender, date, subscribe, handleSubmit} = props;
+export class Register extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            accountData: {
+                id: '',
+                email: '',
+                password: ''
+            }
+        }
+    }
 
-    const genders = [
-        {label: 'Male'},
-        {label: 'Female'}
-    ]
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            this.setState({
+                open: false,
+            })
+        }
+    }
 
-    return (
-        <div className="container">
-            <div style={{marginBottom: "1rem"}}>
-                <div>
-                    <Typography variant="h5" gutterBottom component="div">
-                        Customer Register
-                    </Typography>
-                </div>
-                <Divider light/>
-            </div>
-            <form  onSubmit={handleSubmit}>
-                <div className={'background'}></div>
-                <Grid container spacing={{xs: 2, md: 3}} columns={{xs: 4, sm: 8, md: 12}}>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <TextField type="text" id="outlined-basic" name="fullName" variant="outlined" label="Full Name"
-                                   fullWidth={true}/>
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <TextField type="text" id="outlined-basic" variant="outlined" fullWidth={true} label="Email"
-                                   name="email"/>
+    handleSubmit = async () => {
+        console.log(this.state.accountData)
+        let accountData = this.state.accountData
+        let response  = await AccountServices.createAccount(accountData)
+        if (response.status == 201){
+            this.setState({
+                open:true,
+                message:response.data.message,
+                severity:"success"
+            })
+        }else {
+            this.setState({
+                open:true,
+                message:response.data.message,
+                severity:"error"
+            })
+        }
+    }
 
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <TextField type="text" id="outlined-basic" variant="outlined" fullWidth={true} label="Mobile"
-                                   name="mobile"/>
-
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <TextField type="text" id="outlined-basic" variant="outlined" fullWidth={true} label="Address"
-                                   name="Address"/>
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <Autocomplete
-                            disablePortal
-                            id="combo-box-demo"
-                            options={genders}
-                            renderInput={(params) => <TextField {...params} label="Gender"/>}
-                        />
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4} style={{zIndex:"1"}}>
-                        <FormControlLabel control={<Checkbox defaultChecked/>} label="Subscribe for Special Deals" defaultChecked={true}/>
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <div className={'buttons-container'}>
-                            <Button
-                                type="submit"
-                                text="Submit"/>
-                            <Button
-                                text="Reset"
-                                color="default"
-                                /*onClick={resetForm}*/ />
+    render() {
+        return (
+            <div className="base-container" ref={this.props.containerRef}>
+                <ValidatorForm
+                    ref="form"
+                    onSubmit={this.handleSubmit}
+                    onError={errors => console.log(errors)}
+                >
+                    <div className="header">
+                        <Typography variant="h5" gutterBottom component="div">
+                            Register
+                        </Typography>
+                    </div>
+                    <div className="content">
+                        <div className="image">
+                            <img src={registerImg} style={{paddingTop: "1rem"}} alt={"Register.jpg"}/>
                         </div>
-                    </Grid>
-                </Grid>
-                <Grid container spacing={{xs: 2, md: 3}} columns={{xs: 1, sm: 1, md: 1}}>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <div style={{display: "flex", flexDirection: "row"}}>
-                            <div className={'file'}>
-                                <TextField type="text" id="outlined-basic" variant="outlined" label="Nic No"/>
-                            </div>
-                            <div className={'file'}>
-                                <TextField type="file" id="outlined-basic" variant="outlined"/>
-                            </div>
 
-                        </div>
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <div style={{display: "flex", flexDirection: "row"}}>
-                            <div className={'file'}>
-                                <TextField type="text" id="outlined-basic" variant="outlined"
-                                           label="Driving License number"/>
-                            </div>
-                            <div className={'file'}>
-                                <TextField type="file" id="outlined-basic" variant="outlined"/>
-                            </div>
-
-                        </div>
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <div>
-                            <Button
-                                type="submit"
-                                text="Submit"/>
-                            <Button
-                                text="Reset"
-                                color="default"/>
-                        </div>
-                    </Grid>
-                    <Grid item xs={2} sm={4} md={4}>
-                        <div className={'loginModel'}>
-                            <div className={'loginItem'}>
-                                <Typography variant="h7"  gutterBottom component="div">
-                                    Already have account</Typography>
-                            </div>
-                            <div>
-                                <NavLink  to="/Login" exact>
-                            <span>
-                                <MyButton
-                                    idleText={
-                                        "Login"
-                                    }
+                        <div className="form">
+                            <div className="form-group">
+                                <label htmlFor="username">Nic Number</label>
+                                <TextValidator type="text" name="id" placeholder="Nic Number"
+                                               value={this.state.accountData.id}
+                                               errorMessages={['this field is required']}
+                                               validators={['required']}
+                                               onChange={(e) => {
+                                                   let accountData = this.state.accountData
+                                                   accountData.id = e.target.value
+                                                   this.setState({accountData})
+                                               }}
+                                               variant="standard"
+                                               size={"small"}
                                 />
-                            </span>
-                                </NavLink>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <TextValidator type="text" name="email" placeholder="email"
+                                               value={this.state.accountData.email}
+                                               errorMessages={['this field is required']}
+                                               validators={['required']}
+                                               onChange={(e) => {
+                                                   let accountData = this.state.accountData
+                                                   accountData.email = e.target.value
+                                                   this.setState({accountData})
+                                               }}
+                                               variant="standard"
+                                               size={"small"}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <TextValidator type="password" name="password" placeholder="password"
+                                               value={this.state.accountData.password}
+                                               errorMessages={['this field is required']}
+                                               validators={['required']}
+                                               onChange={(e) => {
+                                                   let accountData = this.state.accountData
+                                                   accountData.password = e.target.value
+                                                   this.setState({accountData})
+                                               }}
+                                               variant="standard"
+                                               size={"small"}
+                                />
                             </div>
                         </div>
-                    </Grid>
-                </Grid>
-            </form>
-        </div>
-    )
+
+                    </div>
+                    <div className="footer">
+                        <Button
+                            variant={"contained"}
+                            type="submit"
+                        >Register</Button>
+                    </div>
+                    <Snackbar open={this.state.open} autoHideDuration={6000} onClose={this.handleClose}>
+                        <Alert onClose={this.handleClose} severity={this.state.severity} sx={{width: '100%'}}>
+                            {this.state.message}
+                        </Alert>
+                    </Snackbar>
+                </ValidatorForm>
+            </div>
+        );
+    }
 }
 
-export default Register;
+export default Register

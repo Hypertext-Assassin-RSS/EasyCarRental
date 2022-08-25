@@ -16,6 +16,8 @@ import Login from "./pages/LoginRegister/Login";
 import Register from "./pages/LoginRegister/Register";
 import DenseTable from "./pages/Managment/Rent/RentRequests";
 import Dash from "./pages/Managment/Dash";
+import LoginRegister from "./pages/LoginRegister/LoginRegister";
+import UserData from "./pages/UserData/UserData";
 
 
 const App = () => {
@@ -41,7 +43,7 @@ const App = () => {
                         <Contact/>
                     </Route>
                     <Route path="/Login" exact>
-                        <Login/>
+                        <LoginRegister/>
                     </Route>
                     <Route path="/Register" exact>
                         <Register/>
@@ -51,6 +53,9 @@ const App = () => {
                     </Route>
                     <Route path="/Dash" exact>
                         <Dash/>
+                    </Route>
+                    <Route path="/UserData" exact>
+                        <UserData/>
                     </Route>
                     <Redirect to="/"/>
                 </Switch>
