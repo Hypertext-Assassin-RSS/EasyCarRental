@@ -22,6 +22,13 @@ public class AccountController {
     AccountService accountService;
 
     @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public ResponseUtil saveAccount(@RequestBody AccountDTO accountDTO){
+        accountService.saveAccount(accountDTO);
+        return new ResponseUtil(200,"User ID : "+accountDTO.getId()+" Register Success",null);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping
     public ResponseUtil updateAccount(@RequestBody AccountDTO accountDTO){
         System.out.println(accountDTO.toString());

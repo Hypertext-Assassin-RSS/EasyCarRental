@@ -1,0 +1,48 @@
+.home-container{
+    display: flex;
+    height: 83vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home-background{
+    position: absolute;
+    background: url("../../img/home-background.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 70%;
+    height: 75%;
+}
+
+.home-tittle-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+    z-index: 1;
+}
+
+.home-title > h3{
+    font-size: 7vh;
+    font-weight: bolder;
+}
+
+.home-subtitle > h5{
+    font-size: 2.2vh
+}
+
+.home-button-container{
+
+}
+
+/*===========================================================*/
+@media only screen and (max-width: 768px) {
+    .home-background{
+        width: 90%;
+        height: 80%;
+    }
+
+}

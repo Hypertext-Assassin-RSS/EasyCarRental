@@ -1,0 +1,39 @@
+.background{
+    display: flex;
+    background: url("../../img/Register.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 100vw;
+    height: 60vh;
+    right: 0;
+    left: 0;
+}
+
+
+.fileSelect{
+    display: flex;
+    width: max-content;
+    flex-direction:row;
+    margin-top: 0.5rem;
+
+}
+
+.fileSelect-filed{
+    width: 70%;
+}
+.buttons-container{
+    margin-bottom: .5rem;
+}
+.file{
+    margin-right: .5rem;
+}
+
+.loginModel{
+
+}
+
+.loginItem{
+
+}

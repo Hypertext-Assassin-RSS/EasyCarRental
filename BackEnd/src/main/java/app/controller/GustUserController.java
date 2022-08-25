@@ -44,9 +44,8 @@ public class GustUserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil registerGustUser(@ModelAttribute GustUserDTO gustUserDTO, @ModelAttribute AccountDTO accountDTO){
+    public ResponseUtil registerGustUser(@RequestBody GustUserDTO gustUserDTO){
         gustUserService.registerGustUser(gustUserDTO);
-        accountService.saveAccount(accountDTO);
         return new ResponseUtil(200,"User : "+gustUserDTO.getId() +" saved successful!!",null);
     }
 

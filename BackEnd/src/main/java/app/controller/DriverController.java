@@ -34,9 +34,8 @@ public class DriverController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveDriver(@ModelAttribute DriverDTO driverDTO,@ModelAttribute AccountDTO accountDTO){
+    public ResponseUtil saveDriver(@RequestBody DriverDTO driverDTO){
         driverService.saveDriver(driverDTO);
-        accountService.saveAccount(accountDTO);
         return new ResponseUtil(200,"Diver From ID : "+driverDTO.getId()+" Saved!",null);
     }
 

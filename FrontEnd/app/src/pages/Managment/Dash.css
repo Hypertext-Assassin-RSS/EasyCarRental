@@ -1,0 +1,24 @@
+.Dash-container{
+    display: flex;
+    height: 83vh;
+    width: 100vw;
+}
+
+.chart-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.row-one{
+    display: flex;
+    width: 40%;
+}
+.row-two{
+    display: flex;
+    width: 40%;
+}
+
+.income-data{
+    display: flex;
+}
