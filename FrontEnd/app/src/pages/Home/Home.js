@@ -5,35 +5,39 @@ import '@fontsource/roboto/700.css';
 import {Typography} from "@mui/material";
 import "../Home/Home.css"
 import { BsArrowRightCircle } from "react-icons/bs";
+import QuickBook from "../../Components/QuikeBook/QuickBook";
 
 const Home = () => {
   return (
     <div className="home-container">
-      <div className={'home-background'}></div>
-        <div className={'home-tittle-container'}>
-          <div className={'home-title'}>
-            <h3>
-              Easy Car Rent
-            </h3>
-          </div>
-          <div className={'home-subtitle'}>
-              <h5>
-                Rent a Car Made Easy
-              </h5>
-          </div>
+        <div>
+            <QuickBook/>
         </div>
-      <div className={'home-button-container'}>
-        <MyButton
-            rounded={true}
-            size="large"
-            idleText={
-          <span>
+      <div className={'home-background'}>
+          <div className={'home-tittle-container'}>
+              <div className={'home-title'}>
+                  <h3>
+                      Easy Car Rent
+                  </h3>
+              </div>
+              <div className={'home-subtitle'}>
+                  <h5>
+                      Rent a Car Made Easy
+                  </h5>
+              </div>
+          </div>
+          <div className={'home-button-container'}>
+              <MyButton
+                  rounded={true}
+                  size="large"
+                  idleText={
+                      <span>
             Book Now <BsArrowRightCircle/>
           </span>
-          }
-        />
+                  }
+              />
+          </div>
       </div>
-
   </div>
   )
 }

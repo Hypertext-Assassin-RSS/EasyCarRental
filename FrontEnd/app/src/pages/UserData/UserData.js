@@ -22,7 +22,7 @@ class UserData extends Component {
                 address: '',
                 id: '',
                 licenseNo: '',
-                registerDate: ''
+                registerDate: new Date().toISOString().slice(0, 10)
             },
             open:false,
             message:'',
@@ -32,17 +32,18 @@ class UserData extends Component {
 
 
     componentDidMount() {
-        this.getDate()
+        //this.getDate()
+        console.log(this.state.formData.registerDate)
 
     }
 
-    getDate = () => {
-        let todayDate = new Date().toISOString().slice(0, 10);
+    /*getDate = () => {
+        let todayDate =
         let formData = this.state.formData
         formData.registerDate = todayDate
         this.setState({formData})
         console.log(this.state.formData.registerDate)
-    }
+    }*/
 
 
     subscribe = () => {
