@@ -32,19 +32,16 @@ class UserData extends Component {
 
 
     componentDidMount() {
-        let date = new Date();
-        let month = (date.getMonth() +1);
-        let mydate;
-        if (month < 10) {
-            month = "0"+month
-            console.log(month)
-            mydate = date.getFullYear()+"-"+month+"-"+date.getDate()
-        }
-        this.setState({
-            registerDate:mydate
-        })
-        console.log(this.state.registerDate)
-        console.log("Mydate :",mydate.toString())
+        this.getDate()
+
+    }
+
+    getDate = () => {
+        let todayDate = new Date().toISOString().slice(0, 10);
+        let formData = this.state.formData
+        formData.registerDate = todayDate
+        this.setState({formData})
+        console.log(this.state.formData.registerDate)
     }
 
 
