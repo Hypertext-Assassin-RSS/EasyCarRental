@@ -40,7 +40,7 @@ public class CarController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveCar(CarDTO carDTO){
+    public ResponseUtil saveCar(@RequestBody CarDTO carDTO){
         carService.saveCar(carDTO);
         return new ResponseUtil(200,"Car : "+ carDTO.getRegistrationNumber()+" data Saved",null);
     }

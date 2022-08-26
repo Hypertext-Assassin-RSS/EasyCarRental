@@ -16,7 +16,7 @@ class QuickBook extends Component{
 
     render() {
         return(
-            <div className='container'>
+            <div className='quickbook-container'>
                 <div className='item-container'>
                     <Typography variant="subtitle2" gutterBottom>
                         Pickup Location

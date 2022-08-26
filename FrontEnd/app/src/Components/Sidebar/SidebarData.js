@@ -2,7 +2,7 @@ import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
-
+import DirectionsCarRoundedIcon from '@mui/icons-material/DirectionsCarRounded';
 
 
 export const SidebarData = [
@@ -13,9 +13,9 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Reports',
-    path: '/reports',
-    icon: <IoIcons.IoIosPaper />,
+    title: 'Car',
+    path: '/Car',
+    icon: <DirectionsCarRoundedIcon />,
     cName: 'nav-text'
   },
   {

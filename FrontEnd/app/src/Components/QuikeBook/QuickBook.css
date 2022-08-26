@@ -1,5 +1,5 @@
 
-.container{
+.quickbook-container{
     display: flex;
     flex-direction: column;
     margin-left: 2rem;

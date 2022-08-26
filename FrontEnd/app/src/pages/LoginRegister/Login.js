@@ -46,7 +46,7 @@ export class Login extends Component {
         if (response.status == 200){
             this.setState({
                 open:true,
-                message:"login success",
+                message:response.data.message,
                 severity:'success'
             })
 
@@ -54,7 +54,7 @@ export class Login extends Component {
         }else {
             this.setState({
                 open:true,
-                message:"login error",
+                message:response.response.data.message,
                 severity:'error'
             })
         }
@@ -111,10 +111,7 @@ export class Login extends Component {
                     <div className={'buttons'}>
                         <NavLink to="/Register" exact>
                             <span>
-                                <MyButton
-                                    idleText={"Register"}
 
-                                />
                             </span>
                         </NavLink>
                     </div>

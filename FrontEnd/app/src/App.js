@@ -18,6 +18,7 @@ import DenseTable from "./pages/Managment/Rent/RentRequests";
 import Dash from "./pages/Managment/Dash";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import UserData from "./pages/UserData/UserData";
+import Car from "./pages/Managment/Car/Car";
 
 
 const App = () => {
@@ -56,6 +57,9 @@ const App = () => {
                     </Route>
                     <Route path="/UserData" exact>
                         <UserData/>
+                    </Route>
+                    <Route path="/Car" exact>
+                        <Car/>
                     </Route>
                     <Redirect to="/"/>
                 </Switch>

@@ -55,13 +55,14 @@ class UserData extends Component {
         if (response.status == 201){
             this.setState({
                 open:true,
-                message:'saved',
+                message:response.data.message,
                 severity:"success"
             })
         }else {
+            console.log(response)
             this.setState({
                 open:true,
-                message:'error',
+                message:response.response.data.message,
                 severity:"error"
             })
         }
