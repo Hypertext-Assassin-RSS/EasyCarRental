@@ -61,6 +61,7 @@ class Car extends Component {
 
 
     open = () => {
+        console.log(this.state.formData)
         this.setState({
             open: true,
             message: 'Test',
@@ -103,10 +104,22 @@ class Car extends Component {
                         </Grid>
 
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField id="outlined-basic" label="Registration Number" variant="outlined" fullWidth={true}/>
+                            <TextField id="outlined-basic" label="Registration Number" variant="outlined" fullWidth={true}
+                                       onChange={(e) => {
+                                           let formData = this.state.formData
+                                           formData.registrationNumber = e.target.value
+                                           this.setState({formData})
+                                       }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField id="outlined-basic" label="Brand" variant="outlined" fullWidth={true}/>
+                            <TextField id="outlined-basic" label="Brand" variant="outlined" fullWidth={true}
+                                       onChange={(e) => {
+                                           let formData = this.state.formData
+                                           formData.brand = e.target.value
+                                           this.setState({formData})
+                                       }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
                             <FormControl fullWidth>
@@ -116,19 +129,35 @@ class Car extends Component {
                                     id="demo-simple-select"
                                     value={this.state.type}
                                     label="Type"
-                                    onChange={null}
+                                    onChange={(e) => {
+                                        let formData = this.state.formData
+                                        formData.type = e.target.value
+                                        this.setState({formData})
+                                    }}
                                 >
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+                                    <MenuItem value={'Luxury'}>Luxury</MenuItem>
+                                    <MenuItem value={'Normal'}>Normal</MenuItem>
+
                                 </Select>
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField id="outlined-basic" label="Color" variant="outlined" fullWidth={true}/>
+                            <TextField id="outlined-basic" label="Color" variant="outlined" fullWidth={true}
+                                       onChange={(e) => {
+                                           let formData = this.state.formData
+                                           formData.color = e.target.value
+                                           this.setState({formData})
+                                       }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField type='number' min='2' value={this.state.passengersCount} step='1' label={'Passengers Count'} onChange={null} variant={"outlined"} fullWidth={true}/>
+                            <TextField type='number' min='2' value={this.state.passengersCount} step='1' label={'Passengers Count'}  variant={"outlined"} fullWidth={true}
+                                       onChange={(e) => {
+                                           let formData = this.state.formData
+                                           formData.passengersCount = e.target.value
+                                           this.setState({formData})
+                                       }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
                             <FormControl fullWidth>
@@ -137,10 +166,14 @@ class Car extends Component {
                                     id="demo-simple-select"
                                     value={this.state.transmissionType}
                                     label="Transmission Type"
-                                    onChange={null}
+                                    onChange={(e) => {
+                                        let formData = this.state.formData
+                                        formData.transmissionType = e.target.value
+                                        this.setState({formData})
+                                    }}
                                 >
-                                    <MenuItem value={10}>Auto</MenuItem>
-                                    <MenuItem value={20}>Manual</MenuItem>
+                                    <MenuItem value={'Auto'}>Auto</MenuItem>
+                                    <MenuItem value={'Manual'}>Manual</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -151,24 +184,52 @@ class Car extends Component {
                                     id="demo-simple-select"
                                     value={this.state.fuelType}
                                     label={'Fuel Type'}
-                                    onChange={null}
+                                    onChange={(e) => {
+                                        let formData = this.state.formData
+                                        formData.fuelType = e.target.value
+                                        this.setState({formData})
+                                    }}
                                 >
-                                    <MenuItem value={10}>Petrol</MenuItem>
-                                    <MenuItem value={20}>Diesel</MenuItem>
+                                    <MenuItem value={'Petrol'}>Petrol</MenuItem>
+                                    <MenuItem value={'Diesel'}>Diesel</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField id="outlined-basic" label="DailyRate" variant="outlined" fullWidth={true}/>
+                            <TextField id="outlined-basic" label="DailyRate" variant="outlined" fullWidth={true}
+                                       onChange={(e) => {
+                                           let formData = this.state.formData
+                                           formData.dailyRate = e.target.value
+                                           this.setState({formData})
+                                       }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField id="outlined-basic" label="MonthlyRate" variant="outlined" fullWidth={true}/>
+                            <TextField id="outlined-basic" label="MonthlyRate" variant="outlined" fullWidth={true}
+                                       onChange={(e) => {
+                                           let formData = this.state.formData
+                                           formData.monthlyRate = e.target.value
+                                           this.setState({formData})
+                                       }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField id="outlined-basic" label="FreeMileage" variant="outlined" fullWidth={true}/>
+                            <TextField id="outlined-basic" label="FreeMileage" variant="outlined" fullWidth={true}
+                                       onChange={(e) => {
+                                           let formData = this.state.formData
+                                           formData.freeMileage = e.target.value
+                                           this.setState({formData})
+                                       }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField id="outlined-basic" label="ExtraMileagePrice" variant="outlined" fullWidth={true}/>
+                            <TextField id="outlined-basic" label="ExtraMileagePrice" variant="outlined" fullWidth={true}
+                                       onChange={(e) => {
+                                           let formData = this.state.formData
+                                           formData.extraMileagePrice = e.target.value
+                                           this.setState({formData})
+                                       }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
                             <TextField id="outlined-basic" label="Outlined" variant="outlined" fullWidth={true}/>
