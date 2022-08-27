@@ -5,6 +5,7 @@ import {DataGrid} from "@mui/x-data-grid";
 import MySnackbar from "../../../Components/Snackbar/MySnackbar";
 import Sidebar from "../../../Components/Sidebar/Sidebar";
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import CarServices from "../../../Services/CarServices";
 
 class Car extends Component {
     constructor(props, context) {
@@ -69,6 +70,25 @@ class Car extends Component {
         })
     }
 
+
+    handleSubmit = async () => {
+        let formData = this.state.formData
+        let response  = await CarServices.saveCar(formData);
+        if (response.status == 201){
+            this.setState({
+                open:true,
+                message:response.data.message,
+                severity:"success"
+            })
+        }else {
+            console.log(response)
+            this.setState({
+                open:true,
+                message:response.response.data.message,
+                severity:"error"
+            })
+        }
+    }
     handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             this.setState({
@@ -236,7 +256,7 @@ class Car extends Component {
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={12} display={"flex"} justifyContent={"flex-end"}>
                             <Button variant="contained"
-                                    onClick={this.open}
+                                    type={"submit"}
                             >Save</Button>
                         </Grid>
 
