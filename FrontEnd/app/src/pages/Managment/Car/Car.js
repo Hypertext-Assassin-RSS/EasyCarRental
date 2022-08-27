@@ -26,12 +26,14 @@ class Car extends Component {
             },
             open: false,
             message: '',
-            severity: ''
+            severity: '',
+
+            data:[]
         }
     }
 
     columns = [
-        {field: 'id', headerName: 'RegistrationNumber', width: 200},
+        {field: 'registrationNumber', headerName: 'RegistrationNumber', width: 200},
         {field: 'brand', headerName: 'Brand', width: 100},
         {field: 'type', headerName: 'Type', width: 100},
         {field: 'color', headerName: 'Color', width: 100,},
@@ -44,21 +46,22 @@ class Car extends Component {
         {field: 'dailyRate', headerName: 'Daily Rate', width: 100,},
     ]
 
-    rows = [
+   /* rows = [
         {
-            type: "Luxury",
-            color: "Silver",
-            extraMileagePrice: 120.0,
-            passengersCount: 4,
-            id: "CBZ-1775",
-            transmissionType: "Auto",
-            fuelType: "Petrol",
-            monthlyRate: 150000.0,
-            freeMileage: 15.0,
-            brand: "Nisan",
-            dailyRate: 17000.0
+            id:this.state.data.index,
+            type: this.state.data.type,
+            color: this.state.data.color,
+            extraMileagePrice: this.state.data.extraMileagePrice,
+            passengersCount: this.state.data.passengersCount,
+            registrationNumber:this.state.data.registrationNumber,
+            transmissionType: this.state.data.transmissionType,
+            fuelType: this.state.data.fuelType,
+            monthlyRate: this.state.data.monthlyRate,
+            freeMileage: this.state.data.freeMileage,
+            brand: this.state.data.brand,
+            dailyRate: this.state.data.dailyRate
         }
-    ]
+    ]*/
 
 
     open = () => {
@@ -80,6 +83,7 @@ class Car extends Component {
                 message:response.data.message,
                 severity:"success"
             })
+            this.loadData();
         }else {
             console.log(response)
             this.setState({
@@ -89,6 +93,30 @@ class Car extends Component {
             })
         }
     }
+
+    loadData = async () => {
+        let response = await CarServices.getAllCar();
+        if (response.status == 201) {
+            this.setState({
+                open: true,
+                message: response.data.message,
+                severity:"success",
+                data:response.data.data
+            })
+            console.log(this.state.data)
+        } else {
+            this.setState({
+                open: true,
+                message: 'data load fail',
+                severity:"error"
+            })
+        }
+    }
+
+    componentDidMount() {
+        this.loadData();
+    }
+
     handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             this.setState({
@@ -263,7 +291,8 @@ class Car extends Component {
                         <Grid item xs={12} sm={12} md={12} lg={12}>
                             <div style={{height: 400, width: '100%'}}>
                                 <DataGrid
-                                    rows={this.rows}
+                                    getRowId={(data) => data.registrationNumber }
+                                    rows={this.state.data}
                                     columns={this.columns}
                                     pageSize={5}
                                     rowsPerPageOptions={[5]}

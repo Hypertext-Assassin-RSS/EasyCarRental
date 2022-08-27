@@ -13,6 +13,19 @@ class CarServices {
         })
         return await promise
     }
+
+    getAllCar = async (data) => {
+        const promise = new Promise((resolve, reject) => {
+            axios.get('Car')
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise
+    }
 }
 
 export default new CarServices();
