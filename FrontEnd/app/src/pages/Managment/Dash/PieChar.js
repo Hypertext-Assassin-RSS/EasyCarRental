@@ -6,11 +6,9 @@ Chart.register(...registerables);
 
 function PieChar() {
     const state = {
-        labels: ['January', 'February', 'March',
-            'April', 'May'],
-        datasets: [
-            {
-                label: 'Rainfall',
+        labels: ['January', 'February', 'March', 'April', 'May'],
+        datasets: [{
+                label: 'Car',
                 backgroundColor: [
                     '#B21F00',
                     '#C9DE00',

@@ -7,8 +7,8 @@ import DirectionsCarRoundedIcon from '@mui/icons-material/DirectionsCarRounded';
 
 export const SidebarData = [
   {
-    title: 'Home',
-    path: '/',
+    title: 'Dashboard',
+    path: '/Dash',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
