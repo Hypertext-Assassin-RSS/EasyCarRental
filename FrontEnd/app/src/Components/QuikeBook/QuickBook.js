@@ -13,6 +13,19 @@ class QuickBook extends Component{
 
     constructor(props, context) {
         super(props, context);
+        this.state = {
+            
+                location:'',
+                pickupData:{
+                    date:'',
+                    time:''
+                },
+                returnData:{
+                    date:'',
+                    time:''
+                },
+            
+        }
     }
 
 
@@ -23,7 +36,7 @@ class QuickBook extends Component{
                     <Typography variant="subtitle2" gutterBottom >
                         Pickup Location
                     </Typography>
-                    <TextField id="standard-basic" label="" variant="outlined"  fullWidth={false} size={""}/>
+                    <TextField id="standard-basic" label="" variant="outlined"  fullWidth={false} size={""} onChange={(e)=> {this.setState({location:e.target.value})}}/>
                 </div>
                 <div className='item-container'>
                     <Typography variant="subtitle2" gutterBottom >
@@ -33,17 +46,21 @@ class QuickBook extends Component{
                         <LocalizationProvider dateAdapter={AdapterDayjs} >
                             <DatePicker
                                 label="Pickup Date"
-                                value={null}
+                                value={this.state.pickupData.date}
                                 onChange={(newValue) => {
-
+                                    let pickupData = this.state.pickupData
+                                    pickupData.date = newValue.$d
+                                    this.setState({pickupData})
                                 }}
                                 renderInput={(params) => <TextField  {...params} variant={"outlined"} fullWidth={false} size={""}/>}
                             />
                             <TimePicker
                                 label="Pickup Time"
-                                value={null}
+                                value={this.state.pickupData.time}
                                 onChange={(newValue) => {
-
+                                    let pickupData = this.state.pickupData
+                                    pickupData.time = newValue
+                                    this.setState({pickupData})
                                 }}
                                 renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={false} size={""}/>}
                             />
@@ -59,17 +76,21 @@ class QuickBook extends Component{
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
                                 label="Return Date"
-                                value={null}
+                                value={this.state.returnData.date}
                                 onChange={(newValue) => {
-
+                                    let returnData = this.state.returnData
+                                    returnData.date = newValue.$d
+                                    this.setState({returnData})
                                 }}
                                 renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={false} size={""}/>}
                             />
                             <TimePicker
                                 label="Return Time"
-                                value={null}
+                                value={this.state.returnData.time}
                                 onChange={(newValue) => {
-
+                                    let returnData = this.state.returnData
+                                    returnData.time = newValue
+                                    this.setState({returnData})
                                 }}
                                 renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={false} size={""}/>}
                             />
@@ -81,8 +102,9 @@ class QuickBook extends Component{
                 style={{
                     borderRadius: 35,
                     backgroundColor: "#4C22FF",
-                    padding: "1rem 2rem"
+                    padding: ".5rem 2rem"
                 }}
+                onClick={() => {console.log(this.state)}}
                 >Search</Button>
                 </div>
             </div>
