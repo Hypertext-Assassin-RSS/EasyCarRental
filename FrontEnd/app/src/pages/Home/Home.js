@@ -6,6 +6,9 @@ import {Typography} from "@mui/material";
 import "../Home/Home.css"
 import { BsArrowRightCircle } from "react-icons/bs";
 import QuickBook from "../../Components/QuikeBook/QuickBook";
+import { MdSearch } from "react-icons/md";
+import { Button } from '@material-ui/core';
+
 
 const Home = () => {
   return (
@@ -27,15 +30,12 @@ const Home = () => {
               </div>
           </div>
           <div className={'home-button-container'}>
-              <MyButton
-                  rounded={true}
-                  size="large"
-                  idleText={
-                      <span>
-            Book Now <BsArrowRightCircle/>
-          </span>
-                  }
-              />
+          <Button variant="contained" startIcon={<BsArrowRightCircle/> } 
+          style={{
+            backgroundColor: "#4C22FF",
+            color:'white'
+        }}
+          >Book Now</Button>
           </div>
       </div>
   </div>

@@ -7,8 +7,12 @@
 }
 
 .About-Description-container{
-    height: 70%;
+    height: 50%;
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .About-title > h1{
@@ -24,7 +28,7 @@
     font-size: 2vh
 }
 .About-image-container{
-    height: 70%;
+    height: 50%;
     width: 30%;
 }
 

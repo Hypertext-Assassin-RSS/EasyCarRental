@@ -77,14 +77,13 @@ class QuickBook extends Component{
                     </div>
                 </div>
                 <div className='button-container'>
-                    <MyButton 
-                    rounded='true'
-                    idleText={
-                        <span>
-                              <MdSearch />  Search
-                        </span>
-                    }
-                    />
+                <Button variant="contained" startIcon={<MdSearch />} className='button'
+                style={{
+                    borderRadius: 35,
+                    backgroundColor: "#4C22FF",
+                    padding: "1rem 2rem"
+                }}
+                >Search</Button>
                 </div>
             </div>
         )
