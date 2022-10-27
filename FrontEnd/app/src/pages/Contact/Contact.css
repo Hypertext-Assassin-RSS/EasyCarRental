@@ -1,0 +1,31 @@
+.contact-icon{
+    font-size: 2.9rem;
+    color: #4C22FF;
+    margin: 1rem;
+}
+
+.contact-conatainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.connection{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contact-icon-contaner{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.contact-name-contaner{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
