@@ -31,7 +31,8 @@ nav a {
 }
 
 nav a:hover {
-	color: var(--secondaryColor);
+	text-decoration: none;
+	color: black;
 }
 
 header .nav-btn {

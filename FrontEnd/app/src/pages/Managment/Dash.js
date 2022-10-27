@@ -45,24 +45,23 @@ class Dash extends Component {
                 <Sidebar/>
                 <div className={'chart-container'}>
                     <div className={'row-one'}>
+                        
                         <div className={'booking-data'}>
-                            <PieChar/>
+                            
                         </div>
                         <div className={'car-data'}>
                             <Pie data={this.data} />
                         </div>
                         <div className={'driver-data'}>
-                            <PieChar/>
+                            
                         </div>
                         <div className={'car-maintain-data'}>
-                            <PieChar/>
+                            
                         </div>
                     </div>
                     <div className={'row-two'}>
                         <div className={'income-data'}>
-                            <div><LineChar/></div>
-                            <div><LineChar/></div>
-                            <div><LineChar/></div>
+                           
                         </div>
                     </div>
                 </div>

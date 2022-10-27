@@ -24,7 +24,7 @@
 }
 
 img {
-    width: 100%;
+    width: 80%;
     height: 100%;
 }
 
@@ -159,7 +159,7 @@ input {
     flex-direction: column;
     justify-content: center;
     height: 90%;
-    background-color: #3498db;
+    background-color: #4C22FF;
     width: 100%;
     position: absolute;
     right: -34%;

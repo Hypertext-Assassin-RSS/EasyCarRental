@@ -11,11 +11,11 @@ function Navbar() {
 
 	return (
 		<header>
-			<h3>LOGO</h3>
+			<h3>EASY CAR RENTAL</h3>
 			<nav ref={navRef}>
 				<a href="/home">Home</a>
-				<a href="/#">Catlog</a>
-				<a href="/#">Login/Register</a>
+				<a href="/catlog">Catlog</a>
+				<a href="/Login">Login/Register</a>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
