@@ -11,7 +11,7 @@ function Navbar() {
 
 	return (
 		<header>
-			<h3>EASY CAR RENTAL</h3>
+			 <h3>EASY CAR RENTAL {/*<img className="logo" src="https://static.vecteezy.com/system/resources/previews/005/972/810/large_2x/car-and-key-rental-icon-vector.jpg"/>  */}</h3>
 			<nav ref={navRef}>
 				<a href="/home">Home</a>
 				<a href="/catlog">Catlog</a>
