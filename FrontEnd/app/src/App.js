@@ -10,7 +10,7 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import Services from './pages/Service/Services';
-import Testimonial from './pages/Testimonial/Testimonial';
+import Catlog from './pages/Catlog/Catlog';
 import Navbar from './Components/Navbar/Navbar';
 import Login from "./pages/LoginRegister/Login";
 import Register from "./pages/LoginRegister/Register";
@@ -37,8 +37,8 @@ const App = () => {
                     <Route path="/service" exact>
                         <Services/>
                     </Route>
-                    <Route path="/testimonial" exact>
-                        <Testimonial/>
+                    <Route path="/catlog" exact>
+                        <Catlog />
                     </Route>
                     <Route path="/contact" exact>
                         <Contact/>

@@ -100,8 +100,9 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/testimonial" exact>
-                            <i className="far fa-thumbs-up"></i>Testimonial
+                        <NavLink className="nav-link" to="/catlog" exact>
+                            <i className="far fa-thumbs-up"></i>
+                            Catlog
                         </NavLink>
                     </li>
                     <li className="nav-item">

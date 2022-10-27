@@ -34,7 +34,7 @@ class LoginRegister extends React.Component {
         const current = isLogginActive ? "Register" : "Login";
         const currentActive = isLogginActive ? "login" : "register";
         return (
-            <div className="App">
+            <div className="login-container" >
                 <div className="login">
                     <div className="body-container" ref={ref => (this.container = ref)}>
                         {isLogginActive && (

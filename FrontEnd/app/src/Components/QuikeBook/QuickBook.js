@@ -6,6 +6,8 @@ import {TextField} from "@material-ui/core";
 import {Button, Typography} from "@mui/material";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {DatePicker, LocalizationProvider, TimePicker} from "@mui/x-date-pickers";
+import MyButton from "../Button/MyButton";
+import { MdSearch } from "react-icons/md";
 
 class QuickBook extends Component{
 
@@ -75,7 +77,14 @@ class QuickBook extends Component{
                     </div>
                 </div>
                 <div className='button-container'>
-                    <Button variant='contained'>Search</Button>
+                    <MyButton 
+                    rounded='true'
+                    idleText={
+                        <span>
+                              <MdSearch />  Search
+                        </span>
+                    }
+                    />
                 </div>
             </div>
         )
