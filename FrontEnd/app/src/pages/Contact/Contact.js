@@ -1,6 +1,8 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { MdAddCall, MdEmail, MdLocationPin } from "react-icons/md";
+import InputUnstyled from '@mui/base/InputUnstyled';
+
 
 import "./Contact.css";
 
@@ -17,8 +19,9 @@ const Contact = () => {
           Contact
         </Typography>
       </div>
-      <div className="contact-conatainer">
-        <div className="connection-conatiner">
+      <div className="conatct-message">
+        <div className="contact-conatainer">
+        
           <div className="connection">
             <div className="contact-icon-contaner">
               <MdAddCall className="contact-icon" />
@@ -33,7 +36,7 @@ const Contact = () => {
               >
                 Call
               </Typography>
-              {<span>0795901293</span>}
+              {<span className="contact-details">0795901293</span>}
             </div>
           </div>
           <div className="connection">
@@ -50,7 +53,7 @@ const Contact = () => {
               >
                 Email
               </Typography>
-              {<span>easycarrent.con.lk</span>}
+              {<span className="contact-details">easycarrent.con.lk</span>}
             </div>
           </div>
           <div className="connection">
@@ -67,11 +70,51 @@ const Contact = () => {
               >
                 Address
               </Typography>
-              {<span>No 69 Broad Road,Negambo</span>}
+              {<span className="contact-details">No 69 Broad Road,Negambo</span>}
             </div>
+          </div>
+        
+      </div>
+      <div className="message-container">
+        <div className="message-input-container">
+          <div className="message-input-row">
+          <div className="message-input">
+            <span className="message-input-name">Name</span>
+            <TextField id="standard-basic" label="" variant="standard" 
+             InputProps={{
+              disableUnderline: true,
+            }}
+            />
+          </div>
+          <div className="message-input">
+            <span className="message-input-name">Contact</span>
+            <TextField id="standard-basic" label="" variant="standard" 
+             InputProps={{
+              disableUnderline: true,
+            }}
+            />
+          </div>
+          </div>
+          <div className="message-input">
+          <span className="message-input-name">Project</span>
+          <TextField id="standard-basic" label="" variant="standard" fullWidth='true'
+           InputProps={{
+            disableUnderline: true,
+          }}
+          />
+          </div>
+          <div className="message-input">
+          <span className="message-input-name">Message</span>
+          <TextField id="standard-basic" label="" multiline rows={5} variant="standard" fullWidth='true' 
+           InputProps={{
+            disableUnderline: true,
+          }}
+          />
           </div>
         </div>
       </div>
+      </div>
+      
     </div>
   );
 };

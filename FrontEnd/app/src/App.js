@@ -20,6 +20,7 @@ import Dash from "./pages/Managment/Dash";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import UserData from "./pages/UserData/UserData";
 import Car from "./pages/Managment/Car/Car";
+import Footer from "./pages/Footer/Footer";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
               <About />
               <Services />
               <Contact />
+              <Footer />
             </div>
           </Route>
           <Route path="/about" exact>
