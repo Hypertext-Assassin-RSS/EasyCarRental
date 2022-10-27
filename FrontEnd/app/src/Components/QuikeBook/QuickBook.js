@@ -18,24 +18,24 @@ class QuickBook extends Component{
         return(
             <div className='quickbook-container'>
                 <div className='item-container'>
-                    <Typography variant="subtitle2" gutterBottom>
+                    <Typography variant="subtitle2" gutterBottom >
                         Pickup Location
                     </Typography>
-                    <TextField id="standard-basic" label="" variant="outlined"  fullWidth={true} size={""}/>
+                    <TextField id="standard-basic" label="" variant="outlined"  fullWidth={false} size={""}/>
                 </div>
                 <div className='item-container'>
-                    <Typography variant="subtitle2" gutterBottom>
+                    <Typography variant="subtitle2" gutterBottom >
                         Pickup Date
                     </Typography>
                     <div className='item'>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <LocalizationProvider dateAdapter={AdapterDayjs} >
                             <DatePicker
                                 label="Pickup Date"
                                 value={null}
                                 onChange={(newValue) => {
 
                                 }}
-                                renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={true} size={""}/>}
+                                renderInput={(params) => <TextField  {...params} variant={"outlined"} fullWidth={false} size={""}/>}
                             />
                             <TimePicker
                                 label="Pickup Time"
@@ -43,7 +43,7 @@ class QuickBook extends Component{
                                 onChange={(newValue) => {
 
                                 }}
-                                renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={true} size={""}/>}
+                                renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={false} size={""}/>}
                             />
                         </LocalizationProvider>
                     </div>
@@ -61,7 +61,7 @@ class QuickBook extends Component{
                                 onChange={(newValue) => {
 
                                 }}
-                                renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={true} size={""}/>}
+                                renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={false} size={""}/>}
                             />
                             <TimePicker
                                 label="Return Time"
@@ -69,7 +69,7 @@ class QuickBook extends Component{
                                 onChange={(newValue) => {
 
                                 }}
-                                renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={true} size={""}/>}
+                                renderInput={(params) => <TextField {...params} variant={"outlined"} fullWidth={false} size={""}/>}
                             />
                         </LocalizationProvider>
                     </div>
