@@ -58,6 +58,18 @@ nav {
 	width: 5%;
 }
 
+.nav-icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	transition: transform 1000ms;
+}
+
+.nav-icon:hover{
+	transform: rotate(360deg)
+}
+
 @media only screen and (max-width: 1024px) {
 	header .nav-btn {
 		visibility: visible;

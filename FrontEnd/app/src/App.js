@@ -22,6 +22,8 @@ import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import UserData from "./pages/UserData/UserData";
 import Car from "./pages/Managment/Car/Car";
 import Footer from "./pages/Footer/Footer";
+import AdminLogin from "./pages/Managment/Login/AdminLogin";
+
 
 const App = () => {
   return (
@@ -69,6 +71,9 @@ const App = () => {
           </Route>
           <Route path="/Car" exact>
             <Car />
+          </Route>
+          <Route path="/Admin" exact>
+            <AdminLogin />
           </Route>
           <Redirect to="/" />
         </Switch>

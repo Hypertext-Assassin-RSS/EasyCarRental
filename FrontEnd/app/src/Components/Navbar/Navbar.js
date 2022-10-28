@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../Navbar/Navbar.css";
+import { MdSettings } from "react-icons/md";
 
 function Navbar() {
 	const navRef = useRef();
@@ -25,6 +26,9 @@ function Navbar() {
 			<button className="nav-btn" onClick={showNavbar}>
 				<FaBars />
 			</button>
+			<div className="nav-icon">
+				<a href="/Admin"><MdSettings /></a>
+			</div>
 		</header>
 	);
 }
