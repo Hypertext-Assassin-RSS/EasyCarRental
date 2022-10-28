@@ -7,6 +7,11 @@
     margin-bottom: 10rem;
 }
 
+.services-title-container > h1{
+    font-size: 4vh;
+    font-weight: bold;
+}
+
 .services-model-container{
     display: flex;
     justify-content: space-evenly;
@@ -34,8 +39,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     margin: .5rem;
-    height: 30vh;
-    width: 19vw;
+    height: 50vh;
+    width: 50vh;
  }
 
 .services-model-two{
@@ -43,8 +48,9 @@
     background-size: contain;
     background-repeat: no-repeat;
     margin: .5rem;
-    height: 30vh;
-    width: 19vw;
+    height: 50vh;
+    width: 50vh;
+ 
 }
 
 .services-model-three{
@@ -52,6 +58,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     margin: .5rem;
-    height: 30vh;
-    width: 19vw;
+    height: 50vh;
+    width: 50vh;
+ 
 }

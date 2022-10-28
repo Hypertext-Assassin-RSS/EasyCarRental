@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import {Grid, Paper, Typography} from "@mui/material";
+import {Grid, Paper} from "@mui/material";
 import '@fontsource/roboto/700.css';
 import "../Service/Services.css"
-
+import { Typography }  from '@material-ui/core'
 
 class Services extends Component{
   constructor(props, context, register) {
@@ -11,10 +11,8 @@ class Services extends Component{
   render() {
     return (
         <div className="services-container">
-          <div className={'services-title-container'}>
-              <Typography variant="h3" fontWeight={"bolder"} gutterBottom component="div">
-                  We Offer
-              </Typography>
+          <div className='services-title-container'>
+          <h1>We Offer</h1>
           </div>
             <div className={'services-model-container'}>
                 <Grid sx={{ flexGrow: 1 }} container spacing={2}>

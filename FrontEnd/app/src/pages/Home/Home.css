@@ -16,8 +16,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
 }
 
 .home-tittle-container {
@@ -32,7 +32,7 @@
 
 .home-title > h3 {
     font-size: 7vh;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 .home-subtitle > h5 {
