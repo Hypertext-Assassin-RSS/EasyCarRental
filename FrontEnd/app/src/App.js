@@ -6,6 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
+import { Scrollbars } from "react-custom-scrollbars";
 
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
@@ -26,15 +27,17 @@ const App = () => {
   return (
     <Router>
       <Navbar />
+      
       <main>
         <Switch>
           <Route path="/" exact>
             <div className="App">
-              <Home />
-              <About />
-              <Services />
-              <Contact />
-              <Footer />
+                <Home />
+                <About />
+                <Services />
+                <Contact />
+                <Footer />
+              
             </div>
           </Route>
           <Route path="/about" exact>

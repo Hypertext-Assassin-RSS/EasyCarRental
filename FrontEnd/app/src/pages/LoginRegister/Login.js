@@ -97,7 +97,7 @@ export class Login extends Component {
             </div>
           </div>
         </div>
-        <div className="footer">
+        <div className="login-footer">
           <div className={"buttons"}>
             <Button
               style={{

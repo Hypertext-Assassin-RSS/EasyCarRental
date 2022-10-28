@@ -125,7 +125,7 @@ export class Register extends React.Component {
               </div>
             </div>
           </div>
-          <div className="footer">
+          <div className="login-footer">
             <Button
               variant={"contained"}
               type="submit"
