@@ -1,0 +1,24 @@
+.admin-coantainer{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 91.7vh;
+    background-color: #BEBEC3;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container,.input{
+    margin:1rem;
+}
+
+.customer-btn{
+    width: 8rem;
+    height: 2rem;
+    color: white;
+    background-color: #4C22FF;
+    border-color: #4C22FF;
+    border-radius: 10px;
+}
+
+
