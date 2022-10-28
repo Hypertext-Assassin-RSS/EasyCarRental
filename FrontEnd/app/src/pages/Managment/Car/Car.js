@@ -6,6 +6,7 @@ import MySnackbar from "../../../Components/Snackbar/MySnackbar";
 import Sidebar from "../../../Components/Sidebar/Sidebar";
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import CarServices from "../../../Services/CarServices";
+import './Car.css'
 
 class Car extends Component {
     constructor(props, context) {
@@ -45,23 +46,6 @@ class Car extends Component {
         {field: 'monthlyRate', headerName: 'Monthly Rate', width: 100,},
         {field: 'dailyRate', headerName: 'Daily Rate', width: 100,},
     ]
-
-   /* rows = [
-        {
-            id:this.state.data.index,
-            type: this.state.data.type,
-            color: this.state.data.color,
-            extraMileagePrice: this.state.data.extraMileagePrice,
-            passengersCount: this.state.data.passengersCount,
-            registrationNumber:this.state.data.registrationNumber,
-            transmissionType: this.state.data.transmissionType,
-            fuelType: this.state.data.fuelType,
-            monthlyRate: this.state.data.monthlyRate,
-            freeMileage: this.state.data.freeMileage,
-            brand: this.state.data.brand,
-            dailyRate: this.state.data.dailyRate
-        }
-    ]*/
 
 
     open = () => {
@@ -131,6 +115,7 @@ class Car extends Component {
             <>
                 <Sidebar/>
                 <ValidatorForm
+                    style={styles.form}
                     ref="form"
                     onSubmit={this.handleSubmit}
                     onError={errors => console.log(errors)}
@@ -145,10 +130,12 @@ class Car extends Component {
                         paddingRight={10}
                         marginTop={-20}
                     >
-                        <Grid item xs={12} sm={12} md={12} lg={12}>
-                            <Typography variant="h3" gutterBottom>
+                        <Grid item xs={12} sm={12} md={12} lg={12} >
+                            <div className='car-titel'>
+                              <h1>
                                 Manage Car
-                            </Typography>
+                            </h1>  
+                            </div>
                         </Grid>
 
                         <Grid item xs={12} sm={12} md={6} lg={2}>
@@ -280,7 +267,7 @@ class Car extends Component {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={2}>
-                            <TextField id="outlined-basic" label="Outlined" variant="outlined" fullWidth={true}/>
+                            {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" fullWidth={true}/> */}
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={12} display={"flex"} justifyContent={"flex-end"}>
                             <Button variant="contained"
@@ -310,3 +297,10 @@ class Car extends Component {
 }
 
 export default Car
+
+
+const styles = {
+    form:{
+        marginTop:'10rem'
+    }
+}

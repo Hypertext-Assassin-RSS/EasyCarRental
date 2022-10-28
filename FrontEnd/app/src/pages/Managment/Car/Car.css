@@ -1,0 +1,11 @@
+.car-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ;
+}
+
+.car-titel{
+    font-size: 4vh;
+    font-weight: bolder;
+}
