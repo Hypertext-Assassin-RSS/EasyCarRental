@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import loginImg from "../../img/Login.jpg";
 import "./Login.css";
 import AnimationButton from "../../Components/Button/AnimationButton";
@@ -8,53 +8,53 @@ import MyButton from "../../Components/Button/MyButton";
 import { MdLogin } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import LoginRegisterServices from "../../Services/LoginRegisterServices";
+import { useHistory } from "react-router-dom";
 
 
-export class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      account: {
-        email: "",
-        password: "",
-      },
-      email: "",
-      password: "",
+export default function Login() {
 
-      open: false,
-      message: "",
-      severity: "",
-    };
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [tempEmail, setTempEmail] = useState('')
+  const [tempPassword, setTempPassword] = useState('')
+
+  const [open, setOpen] = useState('')
+  const [message, setMessage] = useState('')
+  const [severity, setSeverity] = useState('')
+
+  const history = useHistory();
+
+
+  function handleClose(event,reason) {
+    if (reason === "clickaway") {
+      setOpen(false)
+    }
   }
 
-  handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      this.setState({
-        open: false,
-      });
-    }
-  };
+  async function login()  {
+    let account = {email:email,password:password}
 
-  login = async () => {
-    let account = this.state.account;
+    console.log(account)
+
     let response = await LoginRegisterServices.login(account);
     console.log(response);
     if (response.status == 200) {
-      this.setState({
-        open: true,
-        message: response.data.message,
-        severity: "success",
-      });
-    } else {
-      this.setState({
-        open: true,
-        message: response.response.data.message,
-        severity: "error",
-      });
-    }
-  };
+        setSeverity('success')
+        setMessage(response.data.message)
+        setOpen(true)
 
-  render() {
+        history.push("/home")
+      
+    } else {
+      setSeverity('error')
+      setMessage(response.response.data.message)
+      setOpen(true)
+    }
+  }
+
+  
+
     return (
       <div className="base-container">
         <div className="header">
@@ -75,9 +75,7 @@ export class Login extends Component {
                 name="email"
                 placeholder="Email"
                 onChange={(e) => {
-                  let account = this.state.account;
-                  account.email = e.target.value;
-                  this.setState({ account });
+                  setEmail(e.target.value)
                 }}
               />
             </div>
@@ -89,9 +87,7 @@ export class Login extends Component {
                 name="password"
                 placeholder="password"
                 onChange={(e) => {
-                  let account = this.state.account;
-                  account.password = e.target.value;
-                  this.setState({ account });
+                 setPassword(e.target.value)
                 }}
               />
             </div>
@@ -106,7 +102,7 @@ export class Login extends Component {
               }}
               variant={"contained"}
               idleText={"Login"}
-              onClick={this.login}
+              onClick={login}
             >
               Login <MdLogin />
             </Button>
@@ -118,21 +114,22 @@ export class Login extends Component {
           </div>
         </div>
         <Snackbar
-          open={this.state.open}
+          open={open}
           autoHideDuration={6000}
-          onClose={this.handleClose}
+          onClose={handleClose}
         >
           <Alert
-            onClose={this.handleClose}
-            severity={this.state.severity}
+            onClose={handleClose}
+            severity={severity}
             sx={{ width: "100%" }}
           >
-            {this.state.message}
+            {message}
           </Alert>
         </Snackbar>
       </div>
     );
-  }
+  
 }
 
-export default Login;
+
+
