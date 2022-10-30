@@ -44,7 +44,7 @@ export default function Login() {
         setMessage(response.data.message)
         setOpen(true)
 
-        history.push("/home")
+        history.push("/Request")
       
     } else {
       setSeverity('error')
