@@ -62,7 +62,9 @@ public class PaymentServiceImpl implements PaymentService {
                 String registrationNumber = requestDetail.getRegistrationNumber();
                 CarDTO carDTO = modelMapper.map(carRepo.findById(registrationNumber), CarDTO.class);
                 String type = carDTO.getType();
+                System.out.println("=============================================================");
                 System.out.println(type);
+                System.out.println("=============================================================");
                 if (type.equals("General")) {
                     System.out.println(General);
                     return "You have to pay Loss Damage Waiver payment : " + General + " if making payment remotely you can upload payment proof from payment section";
